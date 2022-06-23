@@ -154,9 +154,10 @@ else:
     if taskchoice == 'relatório':
         st.subheader('**DataFrame**')
         st.write(df)
-        st.text('•• ━━━━━ ••●•• ━━━━━ ••')
+        st.text('•• ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ••●•• ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ••')
         st.subheader('**Descrição das tabelas contendo dados quantitativos (numéricos)**')
         st.write(df.describe())
+        st.text('•• ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ••●•• ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ••')
         st.text('Será que existe alguma correlação (de Pearson) entre esses dados numéricos?')
         st.write(df.corr().round(1))
         st.write(df.corr().style.background_gradient(cmap='coolwarm'))
