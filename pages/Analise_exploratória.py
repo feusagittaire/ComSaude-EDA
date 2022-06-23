@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import xlrd
+import openpyxl
 
 
 st.markdown('''
@@ -33,7 +34,7 @@ if uplouded_file is not None:
     else:
         @st.cache
         def load_data(uplouded_file):
-            data = pd.read_excel(uplouded_file)
+            data = pd.read_excel(uplouded_file, engine='openpyxl')
             return data
 
     data_load_state = st.text('Carregando arquivo...')
