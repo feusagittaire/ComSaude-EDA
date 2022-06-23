@@ -91,7 +91,7 @@ if uplouded_file is not None:
         st.write(authorpostnumber)
         st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
         
-        st.text('Agora que sabe quem é que mais foi ativo(a) na conversação, escolha ao lado aquele(a) que deseja selecionar para analisar suas publicações.')
+        st.text('**Agora que sabe quem é que mais foi ativo(a) na conversação, escolha aquele(a) que deseja selecionar para analisar suas publicações.**')
         st.subheader('**Dataframe filtrado por usuário(a)**')
         authoroptions = st.selectbox('Qual autor deseja selecionar?', authorsname)
         df_author = df[df['author'].str.contains(authoroptions)]
