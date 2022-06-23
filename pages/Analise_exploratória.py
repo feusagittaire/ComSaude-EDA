@@ -154,7 +154,7 @@ else:
     if taskchoice == 'relatório':
         st.subheader('**DataFrame**')
         st.write(df)
-        st.text('༺═───────────────────────────────────────────────────────────────────────────────═༻')
+        st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━')
         st.subheader('**Descrição das tabelas contendo dados quantitativos (numéricos)**')
         st.write(df.describe())
         st.text('•• ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ••●•• ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ••')
