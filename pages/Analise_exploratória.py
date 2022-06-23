@@ -142,7 +142,9 @@ if uplouded_file is not None:
 
 #EXEMPLE WHEN NO FILE IS UPLOADED
 else: 
-    data = {'autor':['diego','clara','maria'],'publicacao':['2020-12-12T09:19:37+00:00','2021-01-24T09:19:37+00:00','2021-05-05T09:19:37+00:00'],'tweet':['amo vacinas!','vou me vacinar amanhã!','vovó se vacinou ontem, obrigada, SUS!'], 'likes':[100000,25000,895000]}
+    data = {'autor':['diego','clara','maria'],'publicacao':['2020-12-12T09:19:37+00:00','2021-01-24T09:19:37+00:00','2021-05-05T09:19:37+00:00'],
+            'tweet':['amo vacinas!','vou me vacinar amanhã!','vovó se vacinou ontem, obrigada, SUS!'], 'likes':[100000,25000,895000],
+           'retweets:[68500,25050,5876321]}
     df = pd.DataFrame.from_dict(data)
     data_load_state = st.text('Carregando arquivo...')
 
