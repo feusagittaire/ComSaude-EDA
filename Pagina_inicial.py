@@ -5,7 +5,9 @@ from pandas_profiling import ProfileReport
 from streamlit_pandas_profiling import st_profile_report
 
 
-#Web App Title
+
+st.image('https://www.cei.int/sites/default/files/2020-11/TOL%20Education.PNG')
+#Presentation
 st.markdown('''
 # **Análise exploratória de dados para pesquisas na área da comunicação em saúde**
 
