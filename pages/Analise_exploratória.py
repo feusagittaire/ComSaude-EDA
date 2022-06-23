@@ -154,6 +154,7 @@ else:
     if taskchoice == 'relatório':
         st.subheader('**DataFrame**')
         st.write(df)
+        st.image('https://media.istockphoto.com/vectors/swirly-line-page-devider-filigree-border-horizontal-calligraphic-vector-id948358628?b=1&k=20&m=948358628&s=170667a&w=0&h=VuVRUGAWl4RBmv6BdNC367ueWFZ3dixq4Ncma1-IGaE=')
         st.subheader('**Descrição das tabelas contendo dados quantitativos (numéricos)**')
         st.write(df.describe())
         st.text('Será que existe alguma correlação (de Pearson) entre esses dados numéricos?')
