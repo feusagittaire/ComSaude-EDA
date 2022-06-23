@@ -10,7 +10,7 @@ st.markdown('''
 Vejamos, selecione um arquivo para que possamos começar a análise.
 ''')
 
-st.sidebar.image('https://logodownload.org/wp-content/uploads/2017/02/sus-logo-0-2048x2048.png')
+
 #uploud data
 option = st.sidebar.selectbox('Selecione um formato', ('csv','excel'))
 st.sidebar.write('Você selecionou:', option)
