@@ -95,7 +95,7 @@ if uplouded_file is not None:
                 if timeday is not None:  
                     nrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df)+1)
 
-                    st.write(df[df['year'].str.contains(timeyear)][df['month'].str.contains(timemonth)][df['day'].str.contains(timeday)][textimecolumn].head(nrows))
+                    st.write(df.query("year == timeyear)".head(nrows))
                     
 
 
