@@ -28,7 +28,7 @@ if uplouded_file is not None:
 
         @st.cache
         def load_data(uplouded_file):
-            data = pd.read_excel(uplouded_file)
+            data = pd.read_excel(uplouded_file, engine = 'openpyxl')
             return data
         
     
