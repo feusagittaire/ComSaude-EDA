@@ -5,7 +5,7 @@ from pandas_profiling import ProfileReport
 from streamlit_pandas_profiling import st_profile_report
 
 
-
+#Putting an image to make the web app more appealing
 st.image('https://www.cei.int/sites/default/files/2020-11/TOL%20Education.PNG')
 #Presentation
 st.markdown('''
@@ -16,8 +16,8 @@ O intuito da aplicação é tornar mais fácil e acessível a análise explorat�
 
 Boa pesquisa!
 ''')
-
-st.caption('Image source: Central European Initiative (CEI). Url: <https://www.cei.int/events/countering-the-infodemic-best-practices-in-debunking-disinformation>"
+#Image reference
+st.caption('Image source: Central European Initiative (CEI). Url: <https://www.cei.int/events/countering-the-infodemic-best-practices-in-debunking-disinformation>')
 
 
 
