@@ -17,5 +17,7 @@ O intuito da aplicação é tornar mais fácil e acessível a análise explorat�
 Boa pesquisa!
 ''')
 
+st.caption('Image source: Central European Initiative (CEI). Url: <https://www.cei.int/events/countering-the-infodemic-best-practices-in-debunking-disinformation>"
+
 
 
