@@ -49,7 +49,7 @@ if uplouded_file is not None:
         st.subheader('**Descrição das tabelas contendo dados quantitativos (numéricos)**')
         st.write(df.describe())
         st.text('Será que existe alguma correlação (de Pearson) entre esses dados numéricos?')
-        st.write(df.corr().round(2))
+        st.write(df.corr().round(1))
         st.write(df.corr().style.background_gradient(cmap='coolwarm'))
        
         timepossibility = st.selectbox('Seu DataFrame contém coluna de data? É possível fazer análise temporal com os dados que possui?', ['Não', 'Sim'])
@@ -156,7 +156,7 @@ else:
         st.subheader('**Descrição das tabelas contendo dados quantitativos (numéricos)**')
         st.write(df.describe())
         st.text('Será que existe alguma correlação (de Pearson) entre esses dados numéricos?')
-        st.write(df.corr().round(2))
+        st.write(df.corr().round(1))
         st.write(df.corr().style.background_gradient(cmap='coolwarm'))
        
         timepossibility = st.selectbox('Seu DataFrame contém coluna de data? É possível fazer análise temporal com os dados que possui?', ['Não', 'Sim'])
