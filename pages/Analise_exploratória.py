@@ -46,9 +46,11 @@ if uplouded_file is not None:
     if taskchoice == 'relatório':
         st.subheader('**DataFrame**')
         st.write(df)
+        st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
       
         st.subheader('**Descrição das tabelas contendo dados quantitativos (numéricos)**')
         st.write(df.describe())
+        st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
         
         st.text('Será que existe alguma correlação (de Pearson) entre esses dados numéricos?')
         st.write(df.corr().round(1))
@@ -87,6 +89,8 @@ if uplouded_file is not None:
         st.subheader('**Usuários que mais publicaram**')
         authorpostnumber = df['author'].value_counts()
         st.write(authorpostnumber)
+        st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
+        
         st.text('Agora que sabe quem é que mais foi ativo(a) na conversação, escolha ao lado aquele(a) que deseja selecionar para analisar suas publicações.')
         st.subheader('**Dataframe filtrado por usuário(a)**')
         authoroptions = st.selectbox('Qual autor deseja selecionar?', authorsname)
@@ -94,6 +98,7 @@ if uplouded_file is not None:
         numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df_author)+1)
         df_author = df[df['author'].str.contains(authoroptions)].head(numberrows)
         st.write(df_author)
+        st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
 
         analysetext = st.checkbox('Tudo bem, agora quero analisar os tweets desse(a) usuário(a)')
         
@@ -155,9 +160,11 @@ else:
         st.subheader('**DataFrame**')
         st.write(df)
         st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
+        
         st.subheader('**Descrição das tabelas contendo dados quantitativos (numéricos)**')
         st.write(df.describe())
         st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
+        
         st.text('Será que existe alguma correlação (de Pearson) entre esses dados numéricos?')
         st.write(df.corr().round(1))
         st.write(df.corr().style.background_gradient(cmap='coolwarm'))
@@ -196,6 +203,8 @@ else:
         st.subheader('**Usuários que mais publicaram**')
         authorpostnumber = df['autor'].value_counts()
         st.write(authorpostnumber)
+        st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
+       
         st.text('Agora que sabe quem é que mais foi ativo(a) na conversação, escolha ao lado aquele(a) que deseja selecionar para analisar suas publicações.')
         st.subheader('**Dataframe filtrado por usuário(a)**')
         authoroptions = st.selectbox('Qual autor deseja selecionar?', authorsname)
@@ -203,6 +212,7 @@ else:
         numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df_author)+1)
         df_author = df[df['autor'].str.contains(authoroptions)].head(numberrows)
         st.write(df_author)
+        st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
 
         analysetext = st.checkbox('Tudo bem, agora quero analisar os tweets desse(a) usuário(a)')
         
@@ -236,6 +246,7 @@ else:
                     st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
                     tweet = df_author[df_author[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows).tolist()
                     st.write(tweet)
+                    
                 else:
                     columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse:')
                     numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df[df[columnchoosen].str.contains(columnvalue)])+1)
