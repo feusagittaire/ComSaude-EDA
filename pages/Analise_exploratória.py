@@ -89,9 +89,9 @@ if uplouded_file is not None:
                 timeyear = st.text_input('Qual ano?')
                 textimecolumn = st.text_input('Que coluna deseja analisar?')
                     
-                df['year'] = df['timecolumn'].dt.year
-                df['month'] = df['timecolumn'].dt.month
-                df['day'] = df['timecolumn'].dt.day
+                df['year'] = df[timecolumn].dt.year
+                df['month'] = df[timecolumn].dt.month
+                df['day'] = df[timecolumn].dt.day
                 if timeday is not None:  
                     nrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df)+1)
 
