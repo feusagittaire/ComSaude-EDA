@@ -46,9 +46,10 @@ if uplouded_file is not None:
     if taskchoice == 'relatório':
         st.subheader('**DataFrame**')
         st.write(df)
-        st.image('https://media.istockphoto.com/vectors/swirly-line-page-devider-filigree-border-horizontal-calligraphic-vector-id948358628?b=1&k=20&m=948358628&s=170667a&w=0&h=VuVRUGAWl4RBmv6BdNC367ueWFZ3dixq4Ncma1-IGaE=')
+      
         st.subheader('**Descrição das tabelas contendo dados quantitativos (numéricos)**')
         st.write(df.describe())
+        
         st.text('Será que existe alguma correlação (de Pearson) entre esses dados numéricos?')
         st.write(df.corr().round(1))
         st.write(df.corr().style.background_gradient(cmap='coolwarm'))
@@ -146,7 +147,6 @@ else:
     data = {'autor':['diego','clara','maria'],'publicacao':['2020-12-12T09:19:37+00:00','2021-01-24T09:19:37+00:00','2021-05-05T09:19:37+00:00'],
             'tweet':['amo vacinas!','vou me vacinar amanhã!','vovó se vacinou ontem, obrigada, SUS!'], 'likes':[100000,25000,895000],'retweets':[68500,25050,5876321]}
     df = pd.DataFrame.from_dict(data)
-    data_load_state = st.text('Carregando arquivo...')
 
 
     #select the author to see their tweets
@@ -154,7 +154,7 @@ else:
     if taskchoice == 'relatório':
         st.subheader('**DataFrame**')
         st.write(df)
-        st.image('https://media.istockphoto.com/vectors/swirly-line-page-devider-filigree-border-horizontal-calligraphic-vector-id948358628?b=1&k=20&m=948358628&s=170667a&w=0&h=VuVRUGAWl4RBmv6BdNC367ueWFZ3dixq4Ncma1-IGaE=')
+        st.image('https://png.pngtree.com/element_our/20200610/ourmid/pngtree-pattern-white-dividing-line-image_2242484.jpg')
         st.subheader('**Descrição das tabelas contendo dados quantitativos (numéricos)**')
         st.write(df.describe())
         st.text('Será que existe alguma correlação (de Pearson) entre esses dados numéricos?')
