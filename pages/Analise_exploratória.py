@@ -81,20 +81,20 @@ if uplouded_file is not None:
                 st.text('Vamos ver isso num gráfico de tendência?')
                 st.line_chart(temporal.rename(columns ={'date':'index'}).set_index('index'))
                 
-                timeanalysischeck = st.checkbox('Quero analisar os tweets com base na data de publicação para melhor entender o gráfico')
-                if timeanalysischeck:
-                    timeday = st.checkbox('Tudo bem, selecione o dia de interesse', [range(1,31)])
-                    timemonth = st.checkbox('Agora o mês', [range(1,12)])
-                    timeyear = st.text_input('Qual ano?')
-                    textimecolumn = st.text_input('Que coluna deseja analisar?')
+            timeanalysischeck = st.checkbox('Quero analisar os tweets com base na data de publicação para melhor entender o gráfico')
+            if timeanalysischeck:
+                timeday = st.checkbox('Tudo bem, selecione o dia de interesse', [range(1,31)])
+                timemonth = st.checkbox('Agora o mês', [range(1,12)])
+                timeyear = st.text_input('Qual ano?')
+                textimecolumn = st.text_input('Que coluna deseja analisar?')
                     
-                    df['year'] = df['timecolumn'].dt.year
-                    df['month'] = df['timecolumn'].dt.month
-                    df['day'] = df['timecolumn'].dt.day
+                df['year'] = df['timecolumn'].dt.year
+                df['month'] = df['timecolumn'].dt.month
+                df['day'] = df['timecolumn'].dt.day
                     
-                    nrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df)+1)
+                nrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df)+1)
                    
-                    st.write(df[df['year'].str.contains(timeyear)][df['month'] == timemonth][df['day'] == timeday][textimecolumn].head(nrows))
+                st.write(df[df['year'].str.contains(timeyear)][df['month'] == timemonth][df['day'] == timeday][textimecolumn].head(nrows))
                     
 
 
