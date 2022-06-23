@@ -186,17 +186,17 @@ else:
 
     
     if taskchoice == 'qualitativa':
-        authorsname = df['author'].tolist()
+        authorsname = df['autor'].tolist()
         
         st.subheader('**Usuários que mais publicaram**')
-        authorpostnumber = df['author'].value_counts()
+        authorpostnumber = df['autor'].value_counts()
         st.write(authorpostnumber)
         st.text('Agora que sabe quem é que mais foi ativo(a) na conversação, escolha ao lado aquele(a) que deseja selecionar para analisar suas publicações.')
         st.subheader('**Dataframe filtrado por usuário(a)**')
         authoroptions = st.selectbox('Qual autor deseja selecionar?', authorsname)
-        df_author = df[df['author'].str.contains(authoroptions)]
+        df_author = df[df['autor'].str.contains(authoroptions)]
         numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df_author)+1)
-        df_author = df[df['author'].str.contains(authoroptions)].head(numberrows)
+        df_author = df[df['autor'].str.contains(authoroptions)].head(numberrows)
         st.write(df_author)
 
         analysetext = st.checkbox('Tudo bem, agora quero analisar os tweets desse(a) usuário(a)')
