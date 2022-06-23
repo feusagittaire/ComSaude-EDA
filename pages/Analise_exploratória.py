@@ -83,8 +83,11 @@ if uplouded_file is not None:
                 
             timeanalysischeck = st.checkbox('Quero analisar os tweets com base na data de publicação para melhor entender o gráfico')
             if timeanalysischeck:
-                timeday = st.selectbox('Tudo bem, selecione o dia de interesse', [range(1,31)])
-                timemonth = st.selectkbox('Agora o mês', [range(1,12)])
+                days = range(1,31)
+                months = range(1,12)
+   
+                timeday = st.selectbox('Tudo bem, selecione o dia de interesse', days)
+                timemonth = st.selectkbox('Agora o mês', months)
                 timeyear = st.text_input('Qual ano?')
                 textimecolumn = st.text_input('Que coluna deseja analisar?')
                     
