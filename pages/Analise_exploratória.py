@@ -33,6 +33,7 @@ if uplouded_file is not None:
         
     
     else:
+        @st.cache
         def load_data(uplouded_file):
             data = pd.read_csv(uplouded_file)
             return data
