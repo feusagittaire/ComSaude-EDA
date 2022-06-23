@@ -3,7 +3,6 @@ import pandas as pd
 import streamlit as st
 
 
-
 st.markdown('''
 # **Vamos dar uma olhada mais aprofundada na participação de usuários(as) na conversação?**
 
