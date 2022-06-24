@@ -81,6 +81,8 @@ if uplouded_file is not None:
                     st.write(temporal)
                     st.text('Vamos ver isso num gráfico de tendência?')
                     st.line_chart(temporal.rename(columns ={'date':'index'}).set_index('index'))
+            else:
+                print('Você precisa inserir o nome da coluna que contém as datas!')
 
                 timeanalysischeck = st.checkbox('Quero analisar os tweets com base na data de publicação para melhor entender o gráfico')
                 if timeanalysischeck:
