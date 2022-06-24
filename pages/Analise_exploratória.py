@@ -88,19 +88,20 @@ if uplouded_file is not None:
                 timeanalysischeck = st.checkbox('Quero analisar os tweets com base na data de publicação para melhor entender o gráfico')
                 if timeanalysischeck:
 
-                    timeday = st.text_input('Digite um dia (número)')
-                    timemonth = st.text_input('Agora o mês')
+                    timeday = st.text_input('Digite um dia')
+                    timemonth = st.text_input('Agora o mês (número. Ex: 1,2,3,4,...,12')
                     timeyear = st.text_input('Qual ano?')
                     textimecolumn = st.text_input('Que coluna deseja analisar?')
 
                     df['year'] = df[timecolumn].dt.year
                     df['month'] = df[timecolumn].dt.month
                     df['day'] = df[timecolumn].dt.day
-                    if timeday is not None:  
+                    if timeday == '':
+                        st.text('Esperando você preencher os dados')
+                    else:
                         nrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df)+1)
 
-                        st.write(df.query(f"year == {timeyear}").query(f"month == {timemonth}").query(f"day == {timeday}")[textimecolumn].head(nrows).tolist())
-                    
+                        st.write(df.query(f"year == {timeyear}").query(f"month == {timemonth}").query(f"day == {timeday}")[textimecolumn].head(nrows).tolist())  
 
 
 
@@ -244,14 +245,16 @@ else:
                 if timeanalysischeck:
 
                     timeday = st.text_input('Digite um dia (número)')
-                    timemonth = st.text_input('Agora o mês')
+                    timemonth = st.text_input('Agora o mês (número. Ex: 1,2,3,4,...,12')
                     timeyear = st.text_input('Qual ano?')
                     textimecolumn = st.text_input('Que coluna deseja analisar?')
 
                     df['year'] = df[timecolumn].dt.year
                     df['month'] = df[timecolumn].dt.month
                     df['day'] = df[timecolumn].dt.day
-                    if timeday is not None:  
+                    if timeday == '':
+                        st.text('Esperando você preencher os dados')
+                    else:
                         nrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df)+1)
 
                         st.write(df.query(f"year == {timeyear}").query(f"month == {timemonth}").query(f"day == {timeday}")[textimecolumn].head(nrows).tolist())    
