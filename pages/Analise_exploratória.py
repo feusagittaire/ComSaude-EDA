@@ -276,7 +276,7 @@ else:
                     st.write(tweet)
                     
             else:
-                textchoosen = st.selectbox('Qual coluna de texto quero analisar?)
+                textchoosen = st.selectbox('Qual coluna de texto quero analisar?')
                 st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
                 tweet = df_author[textchoosen].head(numberrows).tolist()
                 st.write(tweet)
