@@ -61,41 +61,42 @@ if uplouded_file is not None:
         if timepossibility == 'Sim':
             timecolumn = st.text_input('Qual o nome da coluna? (Você pode adquirir essa informação na sessão DataFrame. Olha na tabela qual o nome, copia, e cola aqui')
             timeformat = st.selectbox('Sua data está em qual formato?', ['dia/mes/ano', 'dia/mes/ano hora/min/segudos'])
-            if timeformat == 'dia/mes/ano hora/min/segudos':
-                df[timecolumn] = pd.to_datetime(df[timecolumn], utc = True)
-                df['date'] = df[timecolumn].dt.date
+            if timecolumn is not None:
+                if timeformat == 'dia/mes/ano hora/min/segudos':
+                    df[timecolumn] = pd.to_datetime(df[timecolumn], utc = True)
+                    df['date'] = df[timecolumn].dt.date
 
-                temporal = df.groupby('date').date.agg('count').to_frame('total').reset_index().sort_values('total', ascending = False)
-                st.text('Aqui estão as datas em função do número de ocorrência em ordem decrescente')
-                st.write(temporal)
-                st.text('Vamos ver isso num gráfico de tendência?')
-                st.line_chart(temporal.rename(columns ={'date':'index'}).set_index('index'))
+                    temporal = df.groupby('date').date.agg('count').to_frame('total').reset_index().sort_values('total', ascending = False)
+                    st.text('Aqui estão as datas em função do número de ocorrência em ordem decrescente')
+                    st.write(temporal)
+                    st.text('Vamos ver isso num gráfico de tendência?')
+                    st.line_chart(temporal.rename(columns ={'date':'index'}).set_index('index'))
 
-            elif timeformat == 'dia/mes/ano':
-                df[timecolumn] = pd.to_datetime(df[timecolumn])
-                df['date'] = df[timecolumn].dt.date
+                elif timeformat == 'dia/mes/ano':
+                    df[timecolumn] = pd.to_datetime(df[timecolumn])
+                    df['date'] = df[timecolumn].dt.date
 
-                temporal = df.groupby('date').date.agg('count').to_frame('total').reset_index().sort_values('total', ascending = False)
-                st.text('Aqui estão as datas em função do número de ocorrência em ordem decrescente')
-                st.write(temporal)
-                st.text('Vamos ver isso num gráfico de tendência?')
-                st.line_chart(temporal.rename(columns ={'date':'index'}).set_index('index'))
-                
-            timeanalysischeck = st.checkbox('Quero analisar os tweets com base na data de publicação para melhor entender o gráfico')
-            if timeanalysischeck:
-                
-                timeday = st.text_input('Digite um dia (número)')
-                timemonth = st.text_input('Agora o mês')
-                timeyear = st.text_input('Qual ano?')
-                textimecolumn = st.text_input('Que coluna deseja analisar?')
-                    
-                df['year'] = df[timecolumn].dt.year
-                df['month'] = df[timecolumn].dt.month
-                df['day'] = df[timecolumn].dt.day
-                if timeday is not None:  
-                    nrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df)+1)
+                    temporal = df.groupby('date').date.agg('count').to_frame('total').reset_index().sort_values('total', ascending = False)
+                    st.text('Aqui estão as datas em função do número de ocorrência em ordem decrescente')
+                    st.write(temporal)
+                    st.text('Vamos ver isso num gráfico de tendência?')
+                    st.line_chart(temporal.rename(columns ={'date':'index'}).set_index('index'))
 
-                    st.write(df.query(f"year == {timeyear}").query(f"month == {timemonth}").query(f"day == {timeday}")[textimecolumn].head(nrows).tolist())
+                timeanalysischeck = st.checkbox('Quero analisar os tweets com base na data de publicação para melhor entender o gráfico')
+                if timeanalysischeck:
+
+                    timeday = st.text_input('Digite um dia (número)')
+                    timemonth = st.text_input('Agora o mês')
+                    timeyear = st.text_input('Qual ano?')
+                    textimecolumn = st.text_input('Que coluna deseja analisar?')
+
+                    df['year'] = df[timecolumn].dt.year
+                    df['month'] = df[timecolumn].dt.month
+                    df['day'] = df[timecolumn].dt.day
+                    if timeday is not None:  
+                        nrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df)+1)
+
+                        st.write(df.query(f"year == {timeyear}").query(f"month == {timemonth}").query(f"day == {timeday}")[textimecolumn].head(nrows).tolist())
                     
 
 
