@@ -132,7 +132,7 @@ if uplouded_file is not None:
             
             Ex: Se estou analisando tweets em que usuários(as) citaram alguém, e eu tenho uma coluna que indica a menção.''')
             
-            st.image('https://ibb.co/zZ82BTD')
+            st.image('https://i.ibb.co/m4vy2Vg/demonstacaotabelastreamlit.png')
              
             st.markdown('''
             Até aqui, foi possível analisar tweets de uma maneira geral, **mas e se a usuária 1 (aquela que escolhi analisar anteriormente) fez menção à mais de uma pessoa?** Se eu quiser analisar 
@@ -268,7 +268,7 @@ else:
             
             Ex: Se estou analisando tweets em que usuários(as) citaram alguém, e eu tenho uma coluna que indica a menção.''')
             
-            st.image('https://ibb.co/zZ82BTD')
+            st.image('https://i.ibb.co/m4vy2Vg/demonstacaotabelastreamlit.png')
              
             st.markdown('''
             Até aqui, foi possível analisar tweets de uma maneira geral, **mas e se a usuária 1 (aquela que escolhi analisar anteriormente) fez menção à mais de uma pessoa?** Se eu quiser analisar 
