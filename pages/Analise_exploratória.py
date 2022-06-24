@@ -262,7 +262,7 @@ else:
                 textcontent = st.selectbox('Você tem interesse em ver os tweets do(a) usuário(a) selecionado(a) ou os tweets de todos(as) aqueles(as) que se enquadram na categoria/classe escolhida?', ['usuário','categoria'])
                 if textcontent == 'usuário':
                     columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse relacionada às publicações do(a) usuário(a) selecionado(a):')
-                    textchoosen = st.text_input('Qual coluna quero analisar, title ou description?')
+                    textchoosen = st.text_input('Qual coluna quero analisar?')
                     st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
                     tweet = df_author[df_author[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows).tolist()
                     st.write(tweet)
