@@ -277,10 +277,13 @@ else:
                     
             else:
                 textchoosen = st.text_input('Qual coluna de texto quero analisar?')
-                st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                tweet = df_author[textchoosen].head(numberrows).tolist()
-                st.write(tweet)
-                 
+                if textchoosen == '':
+                    st.text('Esperando você escrever o nome da coluna de texto!')
+                else: 
+                    st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                    tweet = df_author[textchoosen].head(numberrows).tolist()
+                    st.write(tweet)
+
     
 
 
