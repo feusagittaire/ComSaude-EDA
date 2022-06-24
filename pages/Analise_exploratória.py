@@ -127,46 +127,71 @@ if uplouded_file is not None:
         if analysetext:
             st.markdown('''
             
-            **Vamos lá!** 
+            **Vamos nos aprofundar nesses dados!!**
+            Veja como:
             
-            Vamos explorar esses dados mais à fundo! À partir de agora, você precisa fazer algumas escolhas.
-
-
-            Veja bem, na caixa de seleção **qual coluna?** você vai selecionar a coluna de interesse. 
-
-                Ex:  No caso da pesquisa sobre os(as) heróis(inas) da desinformação, a coluna "herois" corresponde àquela de interesse, pois seu valor corresponde à qual heroi foi mencionado no tweet correspondente.
-
-            Uma vez selecionada a coluna, você tem interesse em fazer uma análise à nivel de usuário(a) ou de categoria?
-                Ex: 
-
-                Usuário: quero entender de que maneira o(a) usuário(a) em questão acionou cada heroi, ou um heroi específico. Caso seja específico, escreva o nome do(a) herói(ina) no espaço reservado.
-                Categoria: quero entender de que maneira um(a) dado(a) herói(ina) se fez ser mencionada no geral. Escreva no espaço reservado o nome do(a) herói(ina) que deseja analisar.
+            Ex: Se estou analisando tweets em que usuários(as) citaram alguém, e eu tenho uma coluna que indica a menção.
+            
+            DATAFRAME
+ 
+            Usuários(as)           Tweets               Menções
+            Usuária 1 ------------- Tweet ------------- Atila Lamarino
+            Usuário 2 --------------Tweet ------------- Jair Bolsonaro
+                                    ....
+            
+            ----------------------------------------------------------------------------------------------------------------------------
+            Até aqui, foi possível analisar tweets de uma maneira geral, **mas e se a usuária 1 (aquela que escolhi analisar anteriormente) fez menção à mais de uma pessoa?** Se eu quiser analisar 
+            os tweets que ela fez menção à uma pessoa específica, em "Escreva qual o nome da classe/categoria" vou escrever a coluna "Menções", que é a que contem as categorias de interesse analítico.
+            Em "qual coluna de texto", você vai colocar "Tweets". Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras.  
+            
+            No caso da análise da categoria, **você vai colocar o nome da classe/categoria que quer analisar**. Ou seja, A coluna é Menções, e quero analisar todos os tweets que fizeram menção à Atila.
+            Logo, na área de especificação da categoria de interesse, vou colocar Atila, ou Atila Lamarino, ou Lamarino. 
+            Em "qual coluna de texto", você vai colocar "Tweets". Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras. 
+            
+            
             ''')
 
             columns = df_author.columns
-            columnpreference = st.checkbox('Tenho algum filtro? Ex: Desejo selecionar apenas textos pertencentes à uma dada classificação.')
+            columnpreference = st.checkbox('Seus dados estão classificados?')
+            
             if columnpreference:
-                columnchoosen = st.selectbox('Qual coluna?', columns)
+                columnchoosen = st.selectbox('Com base em que coluna você deseja que os textos sejam filtrados?', columns)
                 textcontent = st.selectbox('Você tem interesse em ver os tweets do(a) usuário(a) selecionado(a) ou os tweets de todos(as) aqueles(as) que se enquadram na categoria/classe escolhida?', ['usuário','categoria'])
+                
                 if textcontent == 'usuário':
-                    columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse relacionada às publicações do(a) usuário(a) selecionado(a):')
-                    textchoosen = st.selectbox('Qual coluna quero analisar, title ou description?',['title','description'])
-                    st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                    tweet = df_author[df_author[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows).tolist()
-                    st.write(tweet)
+                    st.markdown('''
+                    Tudo bem, você deseja entender qual a relação dos outros dados analíticos à sua disposição com os tweets que o(a) usuário(a) em questão publicou/compartilhou''')
+                    columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse')
+                    textchoosen = st.text_input('Qual coluna de texto quero analisar?')
+                    if textchoosen == '':
+                        st.text('Esperando você escrever o nome da coluna de texto!')
+                    else: 
+                        st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                        tweet = df_author[textchoosen].head(numberrows).tolist()
+                        st.write(tweet)
+                    
                 else:
                     columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse:')
                     numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df[df[columnchoosen].str.contains(columnvalue)])+1)
-                    textchoosen = st.selectbox('Qual coluna quero analisar, title ou description?',['title','description'])
-                    st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                    tweet = df[df[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows).tolist()
-                    st.write(tweet)
-                    
+                    textchoosen = st.text_input('Qual coluna de texto quero analisar?')
+                     if textchoosen == '':
+                        st.text('Esperando você escrever o nome da coluna de texto!')
+                    else: 
+                        st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                        tweet = df_author[textchoosen].head(numberrows).tolist()
+                        st.write(tweet)
+                        st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                        tweet = df[df[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows).tolist()
+                        st.write(tweet)
+
             else:
-                textchoosen = st.selectbox('Qual coluna quero analisar, title ou description?',['title','description'])
-                st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                tweet = df_author[textchoosen].head(numberrows).tolist()
-                st.write(tweet)
+                textchoosen = st.text_input('Qual coluna de texto quero analisar?')
+                if textchoosen == '':
+                    st.text('Esperando você escrever o nome da coluna de texto!')
+                else: 
+                    st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                    tweet = df_author[textchoosen].head(numberrows).tolist()
+                    st.write(tweet)
 
 
 #EXEMPLE WHEN NO FILE IS UPLOADED
@@ -243,43 +268,63 @@ else:
         if analysetext:
             st.markdown('''
             
-            **Vamos lá!** 
+            **Vamos nos aprofundar nesses dados!!**
+            Veja como:
             
-            Vamos explorar esses dados mais à fundo! À partir de agora, você precisa fazer algumas escolhas.
-
-
-            Veja bem, na caixa de seleção **qual coluna?** você vai selecionar a coluna de interesse. 
-
-                Ex:  No caso da pesquisa sobre os(as) heróis(inas) da desinformação, a coluna "herois" corresponde àquela de interesse, pois seu valor corresponde à qual heroi foi mencionado no tweet correspondente.
-
-            Uma vez selecionada a coluna, você tem interesse em fazer uma análise à nivel de usuário(a) ou de categoria?
-                Ex: 
-
-                Usuário: quero entender de que maneira o(a) usuário(a) em questão acionou cada heroi, ou um heroi específico. Caso seja específico, escreva o nome do(a) herói(ina) no espaço reservado.
-                Categoria: quero entender de que maneira um(a) dado(a) herói(ina) se fez ser mencionada no geral. Escreva no espaço reservado o nome do(a) herói(ina) que deseja analisar.
+            Ex: Se estou analisando tweets em que usuários(as) citaram alguém, e eu tenho uma coluna que indica a menção.
+            
+            DATAFRAME
+ 
+            Usuários(as)           Tweets               Menções
+            Usuária 1 ------------- Tweet ------------- Atila Lamarino
+            Usuário 2 --------------Tweet ------------- Jair Bolsonaro
+                                    ....
+            
+            ----------------------------------------------------------------------------------------------------------------------------
+            Até aqui, foi possível analisar tweets de uma maneira geral, **mas e se a usuária 1 (aquela que escolhi analisar anteriormente) fez menção à mais de uma pessoa?** Se eu quiser analisar 
+            os tweets que ela fez menção à uma pessoa específica, em "Escreva qual o nome da classe/categoria" vou escrever a coluna "Menções", que é a que contem as categorias de interesse analítico.
+            Em "qual coluna de texto", você vai colocar "Tweets". Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras.  
+            
+            No caso da análise da categoria, **você vai colocar o nome da classe/categoria que quer analisar**. Ou seja, A coluna é Menções, e quero analisar todos os tweets que fizeram menção à Atila.
+            Logo, na área de especificação da categoria de interesse, vou colocar Atila, ou Atila Lamarino, ou Lamarino. 
+            Em "qual coluna de texto", você vai colocar "Tweets". Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras. 
+            
+            
             ''')
 
             columns = df_author.columns
-            columnpreference = st.checkbox('Tenho algum filtro? Ex: Desejo selecionar apenas textos pertencentes à uma dada classificação, o que contenham um dado valor.')
+            columnpreference = st.checkbox('Seus dados estão classificados?')
+            
             if columnpreference:
                 columnchoosen = st.selectbox('Com base em que coluna você deseja que os textos sejam filtrados?', columns)
                 textcontent = st.selectbox('Você tem interesse em ver os tweets do(a) usuário(a) selecionado(a) ou os tweets de todos(as) aqueles(as) que se enquadram na categoria/classe escolhida?', ['usuário','categoria'])
                 
                 if textcontent == 'usuário':
-                    columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse relacionada às publicações do(a) usuário(a) selecionado(a):')
+                    st.markdown('''
+                    Tudo bem, você deseja entender qual a relação dos outros dados analíticos à sua disposição com os tweets que o(a) usuário(a) em questão publicou/compartilhou''')
+                    columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse')
                     textchoosen = st.text_input('Qual coluna de texto quero analisar?')
-                    st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                    tweet = df_author[df_author[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows).tolist()
-                    st.write(tweet)
+                    if textchoosen == '':
+                        st.text('Esperando você escrever o nome da coluna de texto!')
+                    else: 
+                        st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                        tweet = df_author[textchoosen].head(numberrows).tolist()
+                        st.write(tweet)
                     
                 else:
                     columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse:')
                     numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df[df[columnchoosen].str.contains(columnvalue)])+1)
                     textchoosen = st.text_input('Qual coluna de texto quero analisar?')
-                    st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                    tweet = df[df[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows).tolist()
-                    st.write(tweet)
-                    
+                     if textchoosen == '':
+                        st.text('Esperando você escrever o nome da coluna de texto!')
+                    else: 
+                        st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                        tweet = df_author[textchoosen].head(numberrows).tolist()
+                        st.write(tweet)
+                        st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                        tweet = df[df[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows).tolist()
+                        st.write(tweet)
+
             else:
                 textchoosen = st.text_input('Qual coluna de texto quero analisar?')
                 if textchoosen == '':
