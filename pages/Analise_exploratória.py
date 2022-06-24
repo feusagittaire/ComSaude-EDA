@@ -130,16 +130,11 @@ if uplouded_file is not None:
             **Vamos nos aprofundar nesses dados!!**
             Veja como:
             
-            Ex: Se estou analisando tweets em que usuários(as) citaram alguém, e eu tenho uma coluna que indica a menção.
+            Ex: Se estou analisando tweets em que usuários(as) citaram alguém, e eu tenho uma coluna que indica a menção.''')
             
-            DATAFRAME
- 
-            Usuários(as)           Tweets               Menções
-            Usuária 1 ------------- Tweet ------------- Atila Lamarino
-            Usuário 2 --------------Tweet ------------- Jair Bolsonaro
-                                    ....
-            
-            ----------------------------------------------------------------------------------------------------------------------------
+            st.image('https://ibb.co/zZ82BTD')
+             
+            st.markdown('''
             Até aqui, foi possível analisar tweets de uma maneira geral, **mas e se a usuária 1 (aquela que escolhi analisar anteriormente) fez menção à mais de uma pessoa?** Se eu quiser analisar 
             os tweets que ela fez menção à uma pessoa específica, em "Escreva qual o nome da classe/categoria" vou escrever a coluna "Menções", que é a que contem as categorias de interesse analítico.
             Em "qual coluna de texto", você vai colocar "Tweets". Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras.  
@@ -271,16 +266,11 @@ else:
             **Vamos nos aprofundar nesses dados!!**
             Veja como:
             
-            Ex: Se estou analisando tweets em que usuários(as) citaram alguém, e eu tenho uma coluna que indica a menção.
+            Ex: Se estou analisando tweets em que usuários(as) citaram alguém, e eu tenho uma coluna que indica a menção.''')
             
-            DATAFRAME
- 
-            Usuários(as)           Tweets               Menções
-            Usuária 1 ------------- Tweet ------------- Atila Lamarino
-            Usuário 2 --------------Tweet ------------- Jair Bolsonaro
-                                    ....
-            
-            ----------------------------------------------------------------------------------------------------------------------------
+            st.image('https://ibb.co/zZ82BTD')
+             
+            st.markdown('''
             Até aqui, foi possível analisar tweets de uma maneira geral, **mas e se a usuária 1 (aquela que escolhi analisar anteriormente) fez menção à mais de uma pessoa?** Se eu quiser analisar 
             os tweets que ela fez menção à uma pessoa específica, em "Escreva qual o nome da classe/categoria" vou escrever a coluna "Menções", que é a que contem as categorias de interesse analítico.
             Em "qual coluna de texto", você vai colocar "Tweets". Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras.  
