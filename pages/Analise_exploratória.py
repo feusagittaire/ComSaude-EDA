@@ -174,7 +174,7 @@ if uplouded_file is not None:
                     columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse:')
                     numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df[df[columnchoosen].str.contains(columnvalue)])+1)
                     textchoosen = st.text_input('Qual coluna de texto quero analisar?')
-                     if textchoosen == '':
+                    if textchoosen == '':
                         st.text('Esperando você escrever o nome da coluna de texto!')
                     else: 
                         st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
