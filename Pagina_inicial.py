@@ -20,4 +20,7 @@ Boa pesquisa!
 st.caption('Image source: Central European Initiative (CEI). Url: <https://www.cei.int/events/countering-the-infodemic-best-practices-in-debunking-disinformation>')
 
 
+st.sidebar.image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8MAmlcO5_rDDcrhKCtjUuHxi6AY36dIN-iQ&usqp=CAU")  
+
+
 
