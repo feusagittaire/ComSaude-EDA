@@ -271,7 +271,7 @@ else:
         st.write(authorpostnumber)
         st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
        
-        st.text('Agora que sabe quem é que mais foi ativo(a) na conversação, escolha ao lado aquele(a) que deseja selecionar para analisar suas publicações.')
+        st.markdown('''Agora que sabe quem é que mais foi ativo(a) na conversação, escolha ao lado aquele(a) que deseja selecionar para analisar suas publicações.''')
         st.subheader('**Dataframe filtrado por usuário(a)**')
         authoroptions = st.selectbox('Qual autor deseja selecionar?', authorsname)
         df_author = df[df['autor'].str.contains(authoroptions)]
@@ -293,13 +293,13 @@ else:
             st.image('https://i.ibb.co/m4vy2Vg/demonstacaotabelastreamlit.png')
              
             st.markdown('''
-            Até aqui, foi possível analisar tweets de uma maneira geral, **mas e se a usuária 1 (aquela que escolhi analisar anteriormente) fez menção à mais de uma pessoa?** Se eu quiser analisar 
-            os tweets que ela fez menção à uma pessoa específica, em "Escreva qual o nome da classe/categoria" vou escrever a coluna "Menções", que é a que contem as categorias de interesse analítico.
-            Em "qual coluna de texto", você vai colocar "Tweets". Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras.  
+            Até aqui, foi possível analisar tweets de uma maneira geral. **Mas e se a usuária 1 (aquela que escolhi analisar anteriormente) fez menção à mais de uma pessoa?** Se eu quiser analisar 
+            os tweets em que ela fez menção à uma pessoa específica, em **"Escreva qual o nome da classe/categoria"**, vou escrever a coluna **"Menções"**, que é aquela que contem as categorias de interesse analítico.
+            Em **"qual coluna de texto"**, você vai colocar **"Tweets"**. Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras.  
             
-            No caso da análise da categoria, **você vai colocar o nome da classe/categoria que quer analisar**. Ou seja, A coluna é Menções, e quero analisar todos os tweets que fizeram menção à Atila.
+            No caso da análise da categoria, **você vai colocar o nome da classe/categoria que quer analisar**. Ou seja, A coluna é **Menções**, e quero analisar todos os tweets que fizeram menção à Atila.
             Logo, na área de especificação da categoria de interesse, vou colocar Atila, ou Atila Lamarino, ou Lamarino. 
-            Em "qual coluna de texto", você vai colocar "Tweets". Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras. 
+            Em **"qual coluna de texto"**, você vai colocar **"Tweets"**. Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras.
             
             
             ''')
