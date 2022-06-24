@@ -238,6 +238,24 @@ else:
                     st.write(temporal)
                     st.text('Vamos ver isso num gráfico de tendência?')
                     st.line_chart(temporal.rename(columns ={'date':'index'}).set_index('index'))
+                    
+                    
+                timeanalysischeck = st.checkbox('Quero analisar os tweets com base na data de publicação para melhor entender o gráfico')
+                if timeanalysischeck:
+
+                    timeday = st.text_input('Digite um dia (número)')
+                    timemonth = st.text_input('Agora o mês')
+                    timeyear = st.text_input('Qual ano?')
+                    textimecolumn = st.text_input('Que coluna deseja analisar?')
+
+                    df['year'] = df[timecolumn].dt.year
+                    df['month'] = df[timecolumn].dt.month
+                    df['day'] = df[timecolumn].dt.day
+                    if timeday is not None:  
+                        nrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df)+1)
+
+                        st.write(df.query(f"year == {timeyear}").query(f"month == {timemonth}").query(f"day == {timeday}")[textimecolumn].head(nrows).tolist())    
+               
 
 
     
