@@ -61,7 +61,7 @@ if uplouded_file is not None:
         if timepossibility == 'Sim':
             timecolumn = st.text_input('Qual o nome da coluna? (Você pode adquirir essa informação na sessão DataFrame. Olha na tabela qual o nome, copia, e cola aqui')
             timeformat = st.selectbox('Sua data está em qual formato?', ['dia/mes/ano', 'dia/mes/ano hora/min/segudos'])
-            if timecolumn is not None:
+            if timecolumn is not '':
                 if timeformat == 'dia/mes/ano hora/min/segudos':
                     df[timecolumn] = pd.to_datetime(df[timecolumn], utc = True)
                     df['date'] = df[timecolumn].dt.date
