@@ -20,7 +20,7 @@ Boa pesquisa!
 st.caption('Image source: Central European Initiative (CEI). Url: <https://www.cei.int/events/countering-the-infodemic-best-practices-in-debunking-disinformation>')
 
 
-st.sidebar.image("https://brandslogos.com/wp-content/uploads/images/python-logo-1.png")
+st.sidebar.image("https://i.ibb.co/Y2f21V2/python-logo-1.png")
 st.sidebar.image("http://www.fapesb.ba.gov.br/wp-content/uploads/2019/08/FAPESB-SITE-01-300x99.png")
 
 
