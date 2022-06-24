@@ -61,29 +61,27 @@ if uplouded_file is not None:
         if timepossibility == 'Sim':
             timecolumn = st.text_input('Qual o nome da coluna? (Você pode adquirir essa informação na sessão DataFrame. Olha na tabela qual o nome, copia, e cola aqui')
             timeformat = st.selectbox('Sua data está em qual formato?', ['dia/mes/ano', 'dia/mes/ano hora/min/segudos'])
-            st.write(print(len(timecolumn)))
-            if len(timecolumn) >= 1:
-                if timeformat == 'dia/mes/ano hora/min/segudos':
-                    df[timecolumn] = pd.to_datetime(df[timecolumn], utc = True)
-                    df['date'] = df[timecolumn].dt.date
+                 
+            if timeformat == 'dia/mes/ano hora/min/segudos':
+                df[timecolumn] = pd.to_datetime(df[timecolumn], utc = True)
+                df['date'] = df[timecolumn].dt.date
 
-                    temporal = df.groupby('date').date.agg('count').to_frame('total').reset_index().sort_values('total', ascending = False)
-                    st.text('Aqui estão as datas em função do número de ocorrência em ordem decrescente')
-                    st.write(temporal)
-                    st.text('Vamos ver isso num gráfico de tendência?')
-                    st.line_chart(temporal.rename(columns ={'date':'index'}).set_index('index'))
+                temporal = df.groupby('date').date.agg('count').to_frame('total').reset_index().sort_values('total', ascending = False)
+                st.text('Aqui estão as datas em função do número de ocorrência em ordem decrescente')
+                st.write(temporal)
+                st.text('Vamos ver isso num gráfico de tendência?')
+                st.line_chart(temporal.rename(columns ={'date':'index'}).set_index('index'))
 
-                elif timeformat == 'dia/mes/ano':
-                    df[timecolumn] = pd.to_datetime(df[timecolumn])
-                    df['date'] = df[timecolumn].dt.date
+            elif timeformat == 'dia/mes/ano':
+                df[timecolumn] = pd.to_datetime(df[timecolumn])
+                df['date'] = df[timecolumn].dt.date
 
-                    temporal = df.groupby('date').date.agg('count').to_frame('total').reset_index().sort_values('total', ascending = False)
-                    st.text('Aqui estão as datas em função do número de ocorrência em ordem decrescente')
-                    st.write(temporal)
-                    st.text('Vamos ver isso num gráfico de tendência?')
-                    st.line_chart(temporal.rename(columns ={'date':'index'}).set_index('index'))
-            else:
-                print('Você precisa inserir o nome da coluna que contém as datas!')
+                temporal = df.groupby('date').date.agg('count').to_frame('total').reset_index().sort_values('total', ascending = False)
+                st.text('Aqui estão as datas em função do número de ocorrência em ordem decrescente')
+                st.write(temporal)
+                st.text('Vamos ver isso num gráfico de tendência?')
+                st.line_chart(temporal.rename(columns ={'date':'index'}).set_index('index'))
+            
 
                 timeanalysischeck = st.checkbox('Quero analisar os tweets com base na data de publicação para melhor entender o gráfico')
                 if timeanalysischeck:
@@ -272,7 +270,7 @@ else:
                 else:
                     columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse:')
                     numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df[df[columnchoosen].str.contains(columnvalue)])+1)
-                    textchoosen = st.selectbox('Qual coluna quero analisar, title ou description?',['title','description'])
+                    textchoosen = st.text_input('Qual coluna de texto quero analisar?')
                     st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
                     tweet = df[df[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows).tolist()
                     st.write(tweet)
