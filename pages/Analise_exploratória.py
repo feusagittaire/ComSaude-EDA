@@ -238,7 +238,7 @@ else:
         st.write(df_author)
         st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
 
-        analysetext = st.checkbox('Tudo bem, agora quero analisar os tweets desse(a) usuário(a)')
+        analysetext = st.checkbox('Tudo bem, agora quero analisar os tweets!')
         
         if analysetext:
             st.markdown('''
@@ -260,10 +260,11 @@ else:
             ''')
 
             columns = df_author.columns
-            columnpreference = st.checkbox('Tenho algum filtro? Ex: Desejo selecionar apenas textos pertencentes à uma dada classificação.')
+            columnpreference = st.checkbox('Tenho algum filtro? Ex: Desejo selecionar apenas textos pertencentes à uma dada classificação, o que contenham um dado valor.')
             if columnpreference:
-                columnchoosen = st.selectbox('Qual coluna?', columns)
+                columnchoosen = st.selectbox('Com base em que coluna você deseja que os textos sejam filtrados?', columns)
                 textcontent = st.selectbox('Você tem interesse em ver os tweets do(a) usuário(a) selecionado(a) ou os tweets de todos(as) aqueles(as) que se enquadram na categoria/classe escolhida?', ['usuário','categoria'])
+                
                 if textcontent == 'usuário':
                     columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse relacionada às publicações do(a) usuário(a) selecionado(a):')
                     textchoosen = st.text_input('Qual coluna de texto quero analisar?')
