@@ -137,7 +137,7 @@ if uplouded_file is not None:
              
             st.markdown('''
             Até aqui, foi possível analisar os dados de uma maneira geral. Mas e se você quiser faz uma análise mais exploratória dos dados? Maria, por exemplo, fez menção à dois perfis. Se você quiser analisar o tweet em que ela fez menção à um perfil específico, em **"Escreva qual o nome da classe/categoria"**, escreva a coluna **"mencao"**, que é aquela que contem as categorias de interesse analítico.
-            Em **"qual coluna de texto"**, você vai colocar **"tweet"**. que nesse caso, só existe uma coluna contendo texto. 
+            Em **"qual coluna de texto"**, você vai colocar **"tweet"**, que nesse caso, é a coluna contendo texto.
             
             No caso da análise da categoria, **você vai colocar o nome da classe/categoria que quer analisar**. Ou seja, A coluna é **mencao**, e quero analisar todos os tweets que fizeram menção ao Ministério da saúde.
             Logo, na área de especificação da categoria de interesse, vou colocar minsaude. 
@@ -290,7 +290,7 @@ else:
              
             st.markdown('''
             Até aqui, foi possível analisar os dados de uma maneira geral. Mas e se você quiser faz uma análise mais exploratória dos dados? Maria, por exemplo, fez menção à dois perfis. Se você quiser analisar o tweet em que ela fez menção à um perfil específico, em **"Escreva qual o nome da classe/categoria"**, escreva a coluna **"menção"**, que é aquela que contem as categorias de interesse analítico.
-            Em **"qual coluna de texto"**, você vai colocar **"tweet"**. que nesse caso, só existe uma coluna contendo texto. 
+            Em **"qual coluna de texto"**, você vai colocar **"tweet"**, que nesse caso, é a coluna contendo texto. 
             
             No caso da análise da categoria, **você vai colocar o nome da classe/categoria que quer analisar**. Ou seja, A coluna é **menção**, e quero analisar todos os tweets que fizeram menção ao Ministério da saúde.
             Logo, na área de especificação da categoria de interesse, vou colocar minsaude. 
