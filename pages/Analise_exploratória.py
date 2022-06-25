@@ -114,7 +114,6 @@ if uplouded_file is not None:
         st.write(authorpostnumber)
         st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
         
-        st.markdown('''**Agora que sabe quem é que mais foi ativo(a) na conversação, escolha aquele(a) que deseja selecionar para analisar suas publicações.**''')
                     
         st.subheader('**Dataframe filtrado por usuário(a)**')
         authoroptions = st.selectbox('Qual autor deseja selecionar?', authorsname)
@@ -124,7 +123,7 @@ if uplouded_file is not None:
         st.write(df_author)
         st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
 
-        analysetext = st.checkbox('Tudo bem, agora quero analisar os tweets desse(a) usuário(a)')
+        analysetext = st.checkbox('Tudo bem, agora quero analisar os textos (nesse caso, tweets)!')
         
         if analysetext:
             st.markdown('''
@@ -132,20 +131,18 @@ if uplouded_file is not None:
             **Vamos nos aprofundar nesses dados!!**
             Veja como:
             
-            Ex: Estou analisando tweets em que usuários(as) citaram alguém, e eu tenho uma coluna que indica a menção.''')
+            No DataFrame de exemplo, temos 5 colunas: autor, publicacao, tweets, mencao, likes e retweets.''')
             
-            st.image('https://i.ibb.co/m4vy2Vg/demonstacaotabelastreamlit.png')
+            st.write(df)
              
             st.markdown('''
-            Até aqui, foi possível analisar tweets de uma maneira geral. **Mas e se a usuária 1 (aquela que escolhi analisar anteriormente) fez menção à mais de uma pessoa?** Se eu quiser analisar 
-            os tweets em que ela fez menção à uma pessoa específica, em **"Escreva qual o nome da classe/categoria"**, vou escrever a coluna **"Menções"**, que é aquela que contem as categorias de interesse analítico.
-            Em **"qual coluna de texto"**, você vai colocar **"Tweets"**. Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras.  
+            Até aqui, foi possível analisar os dados de uma maneira geral. Mas e se você quiser faz uma análise mais exploratória dos dados? Maria, por exemplo, fez menção à dois perfis. Se você quiser analisar o tweet em que ela fez menção à um perfil específico, em **"Escreva qual o nome da classe/categoria"**, escreva a coluna **"mencao"**, que é aquela que contem as categorias de interesse analítico.
+            Em **"qual coluna de texto"**, você vai colocar **"tweet"**. que nesse caso, só existe uma coluna contendo texto. 
             
-            No caso da análise da categoria, **você vai colocar o nome da classe/categoria que quer analisar**. Ou seja, A coluna é **Menções**, e quero analisar todos os tweets que fizeram menção à Atila.
-            Logo, na área de especificação da categoria de interesse, vou colocar Atila, ou Atila Lamarino, ou Lamarino. 
-            Em **"qual coluna de texto"**, você vai colocar **"Tweets"**. Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras. 
+            No caso da análise da categoria, **você vai colocar o nome da classe/categoria que quer analisar**. Ou seja, A coluna é **mencao**, e quero analisar todos os tweets que fizeram menção ao Ministério da saúde.
+            Logo, na área de especificação da categoria de interesse, vou colocar minsaude. 
             
-            
+            **Faça o teste!**
             ''')
 
             columns = df_author.columns
@@ -193,8 +190,8 @@ if uplouded_file is not None:
 
 #EXEMPLE WHEN NO FILE IS UPLOADED
 else: 
-    data = {'autor':['diego','clara','maria'],'publicacao':['2020-12-12T09:19:37+00:00','2021-01-24T09:19:37+00:00','2021-05-05T09:19:37+00:00'],
-            'tweet':['amo vacinas!','vou me vacinar amanhã!','vovó se vacinou ontem, obrigada, SUS!'], 'likes':[100000,25000,895000],'retweets':[68500,25050,5876321]}
+    data = {'autor':['diego','maria','maria', 'carla'],'publicacao':['2020-12-12T09:19:37+00:00','2021-01-24T09:19:37+00:00','2021-05-05T09:19:37+00:00','2021-05-05T09:19:37+00:00'],
+            'tweet':['@minsaude cadê as vacinas?','@prefeitura como vai funcionar a vacinação de idosos essa semana?','vovó se vacinou ontem, obrigada, @SUS!', '@jairbolsonaro cansada de tanta desinformação! As vacinas não têm qualquer relação com o HIV!'], 'menção': ['minsaude', 'prefeitura', 'SUS', 'jairbolsonaro'], 'likes':[100000,25000,895000, 5584266],'retweets':[68500,25050,5876321, 54215452]}
     df = pd.DataFrame.from_dict(data)
 
 
@@ -271,7 +268,6 @@ else:
         st.write(authorpostnumber)
         st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
        
-        st.markdown('''Agora que sabe quem é que mais foi ativo(a) na conversação, escolha ao lado aquele(a) que deseja selecionar para analisar suas publicações.''')
         st.subheader('**Dataframe filtrado por usuário(a)**')
         authoroptions = st.selectbox('Qual autor deseja selecionar?', authorsname)
         df_author = df[df['autor'].str.contains(authoroptions)]
@@ -280,7 +276,7 @@ else:
         st.write(df_author)
         st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
 
-        analysetext = st.checkbox('Tudo bem, agora quero analisar os tweets!')
+        analysetext = st.checkbox('Tudo bem, agora quero analisar os textos (nesse caso, tweets)!')
         
         if analysetext:
             st.markdown('''
@@ -288,20 +284,18 @@ else:
             **Vamos nos aprofundar nesses dados!!**
             Veja como:
             
-            Ex: Se estou analisando tweets em que usuários(as) citaram alguém, e eu tenho uma coluna que indica a menção.''')
+            No DataFrame de exemplo, temos 5 colunas: autor, publicacao, tweets, mencao, likes e retweets.''')
             
-            st.image('https://i.ibb.co/m4vy2Vg/demonstacaotabelastreamlit.png')
+            st.write(df)
              
             st.markdown('''
-            Até aqui, foi possível analisar tweets de uma maneira geral. **Mas e se a usuária 1 (aquela que escolhi analisar anteriormente) fez menção à mais de uma pessoa?** Se eu quiser analisar 
-            os tweets em que ela fez menção à uma pessoa específica, em **"Escreva qual o nome da classe/categoria"**, vou escrever a coluna **"Menções"**, que é aquela que contem as categorias de interesse analítico.
-            Em **"qual coluna de texto"**, você vai colocar **"Tweets"**. Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras.  
+            Até aqui, foi possível analisar os dados de uma maneira geral. Mas e se você quiser faz uma análise mais exploratória dos dados? Maria, por exemplo, fez menção à dois perfis. Se você quiser analisar o tweet em que ela fez menção à um perfil específico, em **"Escreva qual o nome da classe/categoria"**, escreva a coluna **"mencao"**, que é aquela que contem as categorias de interesse analítico.
+            Em **"qual coluna de texto"**, você vai colocar **"tweet"**. que nesse caso, só existe uma coluna contendo texto. 
             
-            No caso da análise da categoria, **você vai colocar o nome da classe/categoria que quer analisar**. Ou seja, A coluna é **Menções**, e quero analisar todos os tweets que fizeram menção à Atila.
-            Logo, na área de especificação da categoria de interesse, vou colocar Atila, ou Atila Lamarino, ou Lamarino. 
-            Em **"qual coluna de texto"**, você vai colocar **"Tweets"**. Nesse caso, só existe uma coluna contendo texto, mas poderiam haver outras.
+            No caso da análise da categoria, **você vai colocar o nome da classe/categoria que quer analisar**. Ou seja, A coluna é **mencao**, e quero analisar todos os tweets que fizeram menção ao Ministério da saúde.
+            Logo, na área de especificação da categoria de interesse, vou colocar minsaude. 
             
-            
+            **Faça o teste!**
             ''')
 
             columns = df_author.columns
