@@ -158,9 +158,9 @@ if uplouded_file is not None:
             st.subheader('***Usuário(a)***')
 
             authoroptions = st.selectbox('Qual deseja selecionar?', authorsname)
-            df_author = df[df['autor'].str.contains(authoroptions)]
+            df_author = df[df[author_column_name].str.contains(authoroptions)]
             numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df_author)+1)
-            df_author = df[df['autor'].str.contains(authoroptions)].head(numberrows)
+            df_author = df[df[author_column_name].str.contains(authoroptions)].head(numberrows)
             st.write(df_author)
             st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
 
