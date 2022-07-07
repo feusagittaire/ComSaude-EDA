@@ -117,7 +117,7 @@ if uplouded_file is not None:
 
         
         st.subheader('**Quem mais foi mencionado**')
-        if textchoosen:
+        if textchoosen and author_column_name:
             df['mentioned'] = df[textchoosen].apply(lambda x: re.findall(r'\@[\w\d]*(?=\s)',x))
             mentions = df.explode('mentioned')
             st.write(mentions.value_counts('mentioned'))
@@ -226,7 +226,7 @@ if uplouded_file is not None:
             
 
         else: 
-            st.warning('Copie e cole o nome da coluna de texto')
+            st.warning('Copie e cole o nome da coluna que contém os tweets e aquela onde se localizam os nomes dos usuários')
 
 
 #EXEMPLE WHEN NO FILE IS UPLOADED
