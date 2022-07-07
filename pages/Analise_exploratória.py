@@ -168,7 +168,7 @@ if uplouded_file is not None:
                 mentions_names = mentions.explode('mentioned')['mentioned'].dropna().drop_duplicates().tolist()
                 st.subheader('***Menção***')
                 mentions_options = st.selectbox('Qual deseja selecionar?', mentions_names)
-                df_mentions = mentions.dropna().drop_duplicates()[mentions['mentioned'].dropna().drop_duplicates().str.contains(mentions_options)]
+                df_mentions = mentions.dropna(subset = ['mentioned']).drop_duplicates('mentioned')[mentions['mentioned'].dropna().drop_duplicates().str.contains(mentions_options)]
                 numberrows_mentions = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(mentions_names)+1)
                 st.write(df_mentions.head(numberrows_mentions))
                 st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
