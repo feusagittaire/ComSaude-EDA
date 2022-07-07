@@ -106,85 +106,127 @@ if uplouded_file is not None:
 
     
     if taskchoice == 'qualitativa':
-        authorsname = df['author'].tolist()
+        st.write(df.head(1))
+        textchoosen = st.text_input('Qual coluna de texto deseja analisar?')
+        author_column_name = st.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários')
+        authorsname = df[author_column_name].tolist()
         
         st.subheader('**Usuários que mais publicaram**')
-        authorpostnumber = df['author'].value_counts()
+        authorpostnumber = df['autor'].value_counts()
         st.write(authorpostnumber)
-        st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
-        
-                    
-        st.subheader('**Dataframe filtrado por usuário(a)**')
-        authoroptions = st.selectbox('Qual autor deseja selecionar?', authorsname)
-        df_author = df[df['author'].str.contains(authoroptions)]
-        numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df_author)+1)
-        df_author = df[df['author'].str.contains(authoroptions)].head(numberrows)
-        st.write(df_author)
-        st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
 
-        analysetext = st.checkbox('Tudo bem, agora quero analisar os textos (nesse caso, tweets)!')
         
-        if analysetext:
-            st.markdown('''
-            
-            **Vamos nos aprofundar nesses dados!!**
-            Veja como:
-            
-            No DataFrame de exemplo, temos 5 colunas: autor, publicacao, tweets, mencao, likes e retweets.''')
-            
-            st.write(df)
-             
-            st.markdown('''
-            Até aqui, foi possível analisar os dados de uma maneira geral. Mas e se você quiser faz uma análise mais exploratória dos dados? Maria, por exemplo, fez menção à dois perfis. Se você quiser analisar o tweet em que ela fez menção à um perfil específico, em **"Escreva qual o nome da classe/categoria"**, escreva a coluna **"mencao"**, que é aquela que contem as categorias de interesse analítico.
-            Em **"qual coluna de texto"**, você vai colocar **"tweet"**, que nesse caso, é a coluna contendo texto.
-            
-            No caso da análise da categoria, **você vai colocar o nome da classe/categoria que quer analisar**. Ou seja, A coluna é **mencao**, e quero analisar todos os tweets que fizeram menção ao Ministério da saúde.
-            Logo, na área de especificação da categoria de interesse, vou colocar minsaude. 
-            
-            **Faça o teste!**
-            ''')
+        st.subheader('**Quem mais foi mencionado**')
+        if textchoosen:
+            df['mentioned'] = df[textchoosen].apply(lambda x: re.findall(r'\@[\w\d]*(?=\s)',x))
+            mentions = df.explode('mentioned')
+            st.write(mentions.value_counts('mentioned'))
+        else:
+            st.warning('Copie e cole o nome da coluna de texto na qual menções fazem-se presente')
 
-            columns = df_author.columns
-            columnpreference = st.checkbox('Seus dados estão classificados?')
+        st.subheader('**Principais hashtags**')
+        if textchoosen:
+            df['hashtags'] = df[textchoosen].apply(lambda x: re.findall(r'\#[\w\d]*(?=\s)',x))
+            hashtags = df.explode('hashtags')
+            st.write(hashtags.value_counts('hashtags'))
+            if len(hashtags.value_counts('hashtags')) < 1:
+                st.write('Oh, parece que hashtags não foram usadas como ferramenta extra-textual na conversação que está a analisar')
+        else:
+            st.warning('Copie e cole o nome da coluna de texto na qual menções fazem-se presente')
+
+        st.subheader('**Principais links**')
+        if textchoosen:
+            df['links'] = df[textchoosen].apply(lambda x: re.findall(r'http[\w\d:/]*(?=\s)',x))
+            links = df.explode('links')
+            st.write(links.value_counts('links'))
+            if len(links.value_counts('links')) < 1:
+                st.write('Oh, parece que links não foram usados como ferramenta extra-textual na conversação que está a analisar')
+        else:
+            st.warning('Copie e cole o nome da coluna de texto na qual menções fazem-se presente')
+
+        st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
+        st.header('**Dataframe filtrado por usuário(a)/menção/hashtags/links**')
+
+        
+
+        if textchoosen:
+
+            st.subheader('***Usuário(a)***')
+
+            authoroptions = st.selectbox('Qual deseja selecionar?', authorsname)
+            df_author = df[df['autor'].str.contains(authoroptions)]
+            numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df_author)+1)
+            df_author = df[df['autor'].str.contains(authoroptions)].head(numberrows)
+            st.write(df_author)
+            st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
+
+            if len(mentions.value_counts('mentioned')) > 1:
+                mentions_names = mentions.explode('mentioned')['mentioned'].dropna().drop_duplicates().tolist()
+                st.subheader('***Menção***')
+                mentions_options = st.selectbox('Qual deseja selecionar?', mentions_names)
+                df_mentions = mentions.dropna().drop_duplicates()[mentions['mentioned'].dropna().drop_duplicates().str.contains(mentions_options)]
+                numberrows_mentions = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(mentions_names)+1)
+                st.write(df_mentions.head(numberrows_mentions))
+                st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
+
+           
+
+            analysetext = st.checkbox('Deseja analisar o conteúdo textual dos tweets?')
             
-            if columnpreference:
-                columnchoosen = st.selectbox('Com base em que coluna você deseja que os textos sejam filtrados?', columns)
-                textcontent = st.selectbox('Você tem interesse em ver os tweets do(a) usuário(a) selecionado(a) ou os tweets de todos(as) aqueles(as) que se enquadram na categoria/classe escolhida?', ['usuário','categoria'])
+            if analysetext:
                 
-                if textcontent == 'usuário':
-                    st.markdown('''
-                    Tudo bem, você deseja entender qual a relação dos outros dados analíticos à sua disposição com os tweets que o(a) usuário(a) em questão publicou/compartilhou''')
-                    columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse')
-                    textchoosen = st.text_input('Qual coluna de texto quero analisar?')
-                    if textchoosen == '':
-                        st.text('Esperando você escrever o nome da coluna de texto!')
-                    else: 
-                        st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                        tweet = df_author[textchoosen].head(numberrows).tolist()
-                        st.write(tweet)
-                    
-                else:
-                    columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse:')
-                    numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df[df[columnchoosen].str.contains(columnvalue)])+1)
-                    textchoosen = st.text_input('Qual coluna de texto quero analisar?')
-                    if textchoosen == '':
-                        st.text('Esperando você escrever o nome da coluna de texto!')
-                    else: 
-                        st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                        tweet = df_author[textchoosen].head(numberrows).tolist()
-                        st.write(tweet)
-                        st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                        tweet = df[df[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows).tolist()
-                        st.write(tweet)
 
-            else:
-                textchoosen = st.text_input('Qual coluna de texto quero analisar?')
-                if textchoosen == '':
-                    st.text('Esperando você escrever o nome da coluna de texto!')
-                else: 
-                    st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                    tweet = df_author[textchoosen].head(numberrows).tolist()
-                    st.write(tweet)
+                columns = df_author.columns
+                columnpreference = st.checkbox('Seus dados estão classificados?')
+                
+                if columnpreference:
+                    columnchoosen = st.selectbox('Com base em que coluna você deseja que os textos sejam filtrados?', columns)
+                    textcontent = st.selectbox('Você tem interesse em ver os tweets do(a) usuário(a) selecionado(a) ou os tweets de todos(as) aqueles(as) que se enquadram na categoria/classe escolhida?', ['usuário','categoria'])
+                    
+                    if textcontent == 'usuário':
+                        st.markdown('''
+                        Tudo bem, você deseja entender qual a relação dos outros dados analíticos à sua disposição com os tweets que o(a) usuário(a) em questão publicou/compartilhou''')
+                        columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse')
+                
+                        if textchoosen == '':
+                            st.text('Esperando você escrever o nome da coluna de texto!')
+                        else: 
+                            st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                            tweet = df_author[textchoosen].head(numberrows).tolist()
+                            st.write(tweet)
+                        
+                    else:
+                        columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse:')
+                        numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df[df[columnchoosen].str.contains(columnvalue)])+1)
+                        
+                        if textchoosen == '':
+                            st.text('Esperando você escrever o nome da coluna de texto!')
+                        else: 
+                            st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                            tweet = df_author[textchoosen].head(numberrows).tolist()
+                            st.write(tweet)
+                            st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                            tweet = df[df[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows).tolist()
+                            st.write(tweet)
+
+                else:
+                    
+                    if textchoosen == '':
+                        st.text('Esperando você escrever o nome da coluna de texto!')
+                    else: 
+                        st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                        analysis_choice = st.selectbox('Quer ver a relação de tweets com base em que?', ['usuário(a)', 'menção'])
+                        if analysis_choice == 'menção':
+                            tweet = df_mentions[df_mentions['mentioned'].str.contains(mentions_options)][textchoosen].head(numberrows_mentions).tolist()
+                            st.write(tweet)
+                        elif analysis_choice == 'usuário(a)':
+                            tweet = df_author[textchoosen].head(numberrows).tolist()
+                            st.write(tweet)
+            
+            
+
+        else: 
+            st.warning('Copie e cole o nome da coluna de texto')
 
 
 #EXEMPLE WHEN NO FILE IS UPLOADED
