@@ -100,7 +100,7 @@ if uplouded_file is not None:
                     else:
                         nrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df)+1)
 
-                        st.write(df.query(f"year == {timeyear}").query(f"month == {timemonth}").query(f"day == {timeday}")[textimecolumn].head(nrows).tolist())  
+                        st.write(df.query(f"year == {timeyear}").query(f"month == {timemonth}").query(f"day == {timeday}")[textimecolumn].drop_duplicates().dropna().head(nrows).tolist())  
 
 
 
