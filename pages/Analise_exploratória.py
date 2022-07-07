@@ -11,7 +11,7 @@ Vejamos, selecione um arquivo para que possamos começar a análise.
 
 
 #uploud data
-option = st.sidebar.selectbox('Selecione um formato', ('csv','excel'))
+option = st.sidebar.selectbox('Selecione um formato', ('excel','csv'))
 st.sidebar.write('Você selecionou:', option)
 #pandas profiling report
 
