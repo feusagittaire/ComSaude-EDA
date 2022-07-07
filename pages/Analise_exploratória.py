@@ -109,9 +109,10 @@ if uplouded_file is not None:
         st.write(df.head(1))
         textchoosen = st.text_input('Qual coluna de texto deseja analisar?')
         author_column_name = st.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários')
-        authorsname = df[author_column_name].tolist()
+        
         
         if author_column_name:
+            authorsname = df[author_column_name].tolist()
             st.subheader('**Usuários que mais publicaram**')
             authorpostnumber = df[author_column_name].value_counts()
             st.write(authorpostnumber)
