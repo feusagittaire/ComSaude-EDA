@@ -111,13 +111,16 @@ if uplouded_file is not None:
         author_column_name = st.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários')
         authorsname = df[author_column_name].tolist()
         
-        st.subheader('**Usuários que mais publicaram**')
-        authorpostnumber = df['autor'].value_counts()
-        st.write(authorpostnumber)
+        if author_column_name:
+            st.subheader('**Usuários que mais publicaram**')
+            authorpostnumber = df[author_column_name].value_counts()
+            st.write(authorpostnumber)
+        else: 
+            st.warning('Copie e cole o nome da coluna na qual os nomes dos(as) usuários(as) fazem-se presente')
 
         
         st.subheader('**Quem mais foi mencionado**')
-        if textchoosen and author_column_name:
+        if textchoosen:
             df['mentioned'] = df[textchoosen].apply(lambda x: re.findall(r'\@[\w\d]*(?=\s)',x))
             mentions = df.explode('mentioned')
             st.write(mentions.value_counts('mentioned'))
@@ -149,7 +152,7 @@ if uplouded_file is not None:
 
         
 
-        if textchoosen:
+        if textchoosen and author_column_name:
 
             st.subheader('***Usuário(a)***')
 
