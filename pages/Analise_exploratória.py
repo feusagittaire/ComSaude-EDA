@@ -62,8 +62,57 @@ if uplouded_file is not None:
         st.write(df.corr().round(1))
         st.write(df.corr().style.background_gradient(cmap='coolwarm'))
        
-        timepossibility = st.selectbox('Seu DataFrame contém coluna de data? É possível fazer análise temporal com os dados que possui?', ['Não', 'Sim'])
-        if timepossibility == 'Sim':
+        
+
+
+
+    
+    if taskchoice == 'qualitativa':
+        st.write(df.head(1))
+        textchoosen = st.text_input('Qual coluna de texto deseja analisar?')
+        author_column_name = st.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários')
+        
+        
+        if author_column_name:
+            authorsname = df[author_column_name].tolist()
+            st.subheader('**Usuários que mais publicaram**')
+            authorpostnumber = df[author_column_name].value_counts()
+            st.write(authorpostnumber)
+        else: 
+            st.warning('Copie e cole o nome da coluna na qual os nomes dos(as) usuários(as) fazem-se presente')
+
+        
+        st.subheader('**Quem mais foi mencionado**')
+        if textchoosen:
+            df['mentioned'] = df[textchoosen].apply(lambda x: re.findall(r'\@[\w\d]*(?=\s)',x))
+            mentions = df.explode('mentioned')
+            st.write(mentions.value_counts('mentioned'))
+        else:
+            st.warning('Copie e cole o nome da coluna de texto na qual menções fazem-se presente')
+
+        st.subheader('**Principais hashtags**')
+        if textchoosen:
+            df['hashtags'] = df[textchoosen].apply(lambda x: re.findall(r'\#[\w\d]*(?=\s)',x))
+            hashtags = df.explode('hashtags')
+            st.write(hashtags.value_counts('hashtags'))
+            if len(hashtags.value_counts('hashtags')) < 1:
+                st.write('Oh, parece que hashtags não foram usadas como ferramenta extra-textual na conversação que está a analisar')
+        else:
+            st.warning('Copie e cole o nome da coluna de texto na qual menções fazem-se presente')
+
+        st.subheader('**Principais links**')
+        if textchoosen:
+            df['links'] = df[textchoosen].apply(lambda x: re.findall(r'http[\w\d:/]*(?=\s)',x))
+            links = df.explode('links')
+            st.write(links.value_counts('links'))
+            if len(links.value_counts('links')) < 1:
+                st.write('Oh, parece que links não foram usados como ferramenta extra-textual na conversação que está a analisar')
+        else:
+            st.warning('Copie e cole o nome da coluna de texto na qual menções fazem-se presente')
+            
+        #TIMELINE ANALYSIS
+        time_data_disponible = st.selectbox('Seu DataFrame contém coluna de data? É possível fazer análise temporal com os dados que possui?', ['Não', 'Sim'])
+        if time_data_disponible == 'Sim':
             timecolumn = st.text_input('Qual o nome da coluna? (Você pode adquirir essa informação na sessão DataFrame. Olha na tabela qual o nome, copia, e cola aqui')
             timeformat = st.selectbox('Sua data está em qual formato?', ['dia/mes/ano', 'dia/mes/ano hora/min/segudos'])
             if timecolumn == '':
@@ -120,57 +169,9 @@ if uplouded_file is not None:
                             plt.axis('off')
                             st.pyplot(fig)
 
-
-
-    
-    if taskchoice == 'qualitativa':
-        st.write(df.head(1))
-        textchoosen = st.text_input('Qual coluna de texto deseja analisar?')
-        author_column_name = st.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários')
-        
-        
-        if author_column_name:
-            authorsname = df[author_column_name].tolist()
-            st.subheader('**Usuários que mais publicaram**')
-            authorpostnumber = df[author_column_name].value_counts()
-            st.write(authorpostnumber)
-        else: 
-            st.warning('Copie e cole o nome da coluna na qual os nomes dos(as) usuários(as) fazem-se presente')
-
-        
-        st.subheader('**Quem mais foi mencionado**')
-        if textchoosen:
-            df['mentioned'] = df[textchoosen].apply(lambda x: re.findall(r'\@[\w\d]*(?=\s)',x))
-            mentions = df.explode('mentioned')
-            st.write(mentions.value_counts('mentioned'))
-        else:
-            st.warning('Copie e cole o nome da coluna de texto na qual menções fazem-se presente')
-
-        st.subheader('**Principais hashtags**')
-        if textchoosen:
-            df['hashtags'] = df[textchoosen].apply(lambda x: re.findall(r'\#[\w\d]*(?=\s)',x))
-            hashtags = df.explode('hashtags')
-            st.write(hashtags.value_counts('hashtags'))
-            if len(hashtags.value_counts('hashtags')) < 1:
-                st.write('Oh, parece que hashtags não foram usadas como ferramenta extra-textual na conversação que está a analisar')
-        else:
-            st.warning('Copie e cole o nome da coluna de texto na qual menções fazem-se presente')
-
-        st.subheader('**Principais links**')
-        if textchoosen:
-            df['links'] = df[textchoosen].apply(lambda x: re.findall(r'http[\w\d:/]*(?=\s)',x))
-            links = df.explode('links')
-            st.write(links.value_counts('links'))
-            if len(links.value_counts('links')) < 1:
-                st.write('Oh, parece que links não foram usados como ferramenta extra-textual na conversação que está a analisar')
-        else:
-            st.warning('Copie e cole o nome da coluna de texto na qual menções fazem-se presente')
-
         st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
         st.header('**Dataframe filtrado por usuário(a)/menção/hashtags/links**')
-
-        
-
+       
         if textchoosen and author_column_name:
 
             st.subheader('***Usuário(a)***')
