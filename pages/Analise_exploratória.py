@@ -96,15 +96,21 @@ if uplouded_file is not None:
                     df['year'] = df[timecolumn].dt.year
                     df['month'] = df[timecolumn].dt.month
                     df['day'] = df[timecolumn].dt.day
-                    word_cloud = WordCloud()
+                    
                     if timeday == '':
                         st.text('Esperando você preencher os dados')
                     else:
                         nrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df)+1)
-                        time_analysis_output = df.query(f"year == {timeyear}").query(f"month == {timemonth}").query(f"day == {timeday}")[textimecolumn].drop_duplicates().dropna().head(nrows).tolist()
-
-                        st.write(time_analysis_output) 
-                        st.write(word_cloud.generate(time_analysis_output))
+                        time_analysis_output = df.query(f"year == {timeyear}").query(f"month == {timemonth}")\
+                            .query(f"day == {timeday}")[textimecolumn].drop_duplicates().dropna().head(nrows).tolist()
+                        
+                        word_cloud = WordCloud().generate(time_analysis_output)
+                        st.write(time_analysis_output)
+                        plt.figure()
+                        plt.imshow(word_cloud, interpolation="bilinear")
+                        plt.axis("off")
+                        
+                        st.write(plt.show())
 
 
 
