@@ -67,12 +67,13 @@ if uplouded_file is not None:
     if taskchoice == 'qualitativa':
         st.write(df.head(1))
         
+        #Assigning text column name and author column name variables
         with st.form(key = 'columns_in_form'):
             cols = st.columns(2)
             for i,col in enumerate(cols):
                 textchoosen = st.text_input('Qual coluna de texto deseja analisar?')
                 author_column_name = st.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários')
-            submitted = st.form_submit_buttom('Enviar')
+            submitted = st.form_submit_button('Enviar')
         
         if submitted:
             if author_column_name:
