@@ -198,9 +198,7 @@ if uplouded_file is not None:
 
 
 
-        analysetext = st.checkbox('Deseja analisar o conteúdo textual dos tweets?')
-
-        if analysetext:
+        
 
             columns = df_author.columns
             columnpreference = st.checkbox('Seus dados estão classificados?')
