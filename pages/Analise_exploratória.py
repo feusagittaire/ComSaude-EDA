@@ -198,8 +198,8 @@ if uplouded_file is not None:
 
 
 
-        
-
+        df_author = df[df[author_column_name].str.contains(authoroptions)].head(numberrows_user)
+        df_mentions = mentions.dropna(subset = ['mentioned']).drop_duplicates('mentioned')[mentions['mentioned'].dropna().drop_duplicates().str.contains(mentions_options)]
         columns = df_author.columns
         columnpreference = st.checkbox('Seus dados estão classificados?')
 
@@ -390,7 +390,7 @@ else:
 
             
                 
-
+            df_author = df[df['autor'].str.contains(authoroptions)].head(numberrows)
             columns = df_author.columns
             columnpreference = st.checkbox('Seus dados estão classificados?')
                 
