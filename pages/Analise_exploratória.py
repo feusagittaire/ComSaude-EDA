@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import re
-import wordcloud
+from wordcloud import WordCloud
 
 
 st.markdown('''
