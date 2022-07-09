@@ -30,14 +30,14 @@ if uplouded_file is not None:
     
     if option == 'excel':
 
-        @st.cache(suppress_st_warning=True)
+        @st.cache(allow_output_mutation=True)
         def load_data(uplouded_file):
             data = pd.read_excel(uplouded_file, engine = 'openpyxl')
             return data
         
     
     else:
-        @st.cache(suppress_st_warning=True)
+        @st.cache(allow_output_mutation=True)
         def load_data(uplouded_file):
             data = pd.read_csv(uplouded_file)
             return data
