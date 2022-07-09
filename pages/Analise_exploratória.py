@@ -245,7 +245,7 @@ if uplouded_file is not None:
                     tweet = df_mentions[df_mentions['mentioned'].str.contains(mentions_options)][textchoosen].head(numberrows_mentions).tolist()
                     st.write(tweet)
                 elif analysis_choice == 'usuário(a)':
-                    tweet = df_author[textchoosen].head(numberrows).tolist()
+                    tweet = df_author[textchoosen].head(numberrows_user).tolist()
                     st.write(tweet)
 
 
