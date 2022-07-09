@@ -71,11 +71,10 @@ if uplouded_file is not None:
         #Streamlit forms
         
         with st.form('text and autor'):
-            cols =  st.columns(2)
-            for col in cols:
-                textchoosen = col.text_input('Qual coluna de texto deseja analisar?')
-                author_column_name = col.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários')
-                submitted = st.form_submit_button(label = 'Enviar')
+            col1,col2 =  st.columns(2)
+            extchoosen = col1.text_input('Qual coluna de texto deseja analisar?')
+            author_column_name = col2.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários')
+            submitted = st.form_submit_button(label = 'Enviar')
         
         if submitted:
             if author_column_name:
