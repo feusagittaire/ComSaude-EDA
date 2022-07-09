@@ -4,6 +4,10 @@ import streamlit as st
 import re
 from wordcloud import WordCloud
 from matplotlib import pyplot as plt
+import nltk
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+
 
 st.markdown('''
 # **Vamos dar uma olhada mais aprofundada nos dados?**
@@ -41,6 +45,7 @@ if uplouded_file is not None:
     data_load_state = st.text('Carregando arquivo...')
     df = load_data(uplouded_file)
     data_load_state = st.text('Eitchan, carregamento conluido!')
+    stop_words = stopwords.words('portuguese')
 
     #select the author to see their tweets
     taskchoice = st.selectbox('O que você quer fazer, analisar um relatório com os principais dados contidos no arquivo ou uma análise mais qualitativa?', ['relatório', 'qualitativa'])
@@ -110,7 +115,7 @@ if uplouded_file is not None:
                         #Visualize wordcloud if there's enough text input
                         if nrows > 20:
                             fig,ax = plt.subplots(figsize = (17,7))
-                            word_cloud = WordCloud().generate(' '.join(time_analysis_output))
+                            word_cloud = WordCloud(stopwords = stop_words).generate(' '.join(time_analysis_output))
                             ax.imshow(word_cloud, interpolation = 'bilinear')
                             plt.axis('off')
                             st.pyplot(fig)
