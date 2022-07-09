@@ -96,7 +96,7 @@ if uplouded_file is not None:
                     df['year'] = df[timecolumn].dt.year
                     df['month'] = df[timecolumn].dt.month
                     df['day'] = df[timecolumn].dt.day
-                    word_cloud = wordcloud.WordCloud()
+                    word_cloud = WordCloud()
                     if timeday == '':
                         st.text('Esperando você preencher os dados')
                     else:
