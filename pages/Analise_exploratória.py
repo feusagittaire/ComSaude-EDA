@@ -205,35 +205,35 @@ if uplouded_file is not None:
             columns = df_author.columns
             columnpreference = st.checkbox('Seus dados estão classificados?')
 
-        if columnpreference:
-            columnchoosen = st.selectbox('Com base em que coluna você deseja que os textos sejam filtrados?', columns)
-            textcontent = st.selectbox('Você tem interesse em ver os tweets do(a) usuário(a) selecionado(a) ou os tweets de todos(as) aqueles(as) que se enquadram na categoria/classe escolhida?', ['usuário','categoria'])
+            if columnpreference:
+                columnchoosen = st.selectbox('Com base em que coluna você deseja que os textos sejam filtrados?', columns)
+                textcontent = st.selectbox('Você tem interesse em ver os tweets do(a) usuário(a) selecionado(a) ou os tweets de todos(as) aqueles(as) que se enquadram na categoria/classe escolhida?', ['usuário','categoria'])
 
-            if textcontent == 'usuário':
-                st.markdown('''
-                            Tudo bem, você deseja entender qual a relação dos outros dados analíticos à sua disposição com os tweets que o(a) usuário(a) em questão publicou/compartilhou''')
-                columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse')
+                if textcontent == 'usuário':
+                    st.markdown('''
+                                Tudo bem, você deseja entender qual a relação dos outros dados analíticos à sua disposição com os tweets que o(a) usuário(a) em questão publicou/compartilhou''')
+                    columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse')
 
-                if textchoosen == '':
-                    st.text('Esperando você escrever o nome da coluna de texto!')
-                else: 
-                    st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                    tweet = df_author[textchoosen].head(numberrows_user).tolist()
-                    st.write(tweet)
+                    if textchoosen == '':
+                        st.text('Esperando você escrever o nome da coluna de texto!')
+                    else: 
+                        st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                        tweet = df_author[textchoosen].head(numberrows_user).tolist()
+                        st.write(tweet)
 
-            else:
-                columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse:')
-                numberrows_class = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df[df[columnchoosen].str.contains(columnvalue)])+1)
+                else:
+                    columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse:')
+                    numberrows_class = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df[df[columnchoosen].str.contains(columnvalue)])+1)
 
-                if textchoosen == '':
-                    st.text('Esperando você escrever o nome da coluna de texto!')
-                else: 
-                    st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                    tweet = df_author[textchoosen].head(numberrows).tolist()
-                    st.write(tweet)
-                    st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                    tweet = df[df[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows_class).tolist()
-                    st.write(tweet)
+                    if textchoosen == '':
+                        st.text('Esperando você escrever o nome da coluna de texto!')
+                    else: 
+                        st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                        tweet = df_author[textchoosen].head(numberrows).tolist()
+                        st.write(tweet)
+                        st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
+                        tweet = df[df[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows_class).tolist()
+                        st.write(tweet)
 
         else:
             if textchoosen == '':
