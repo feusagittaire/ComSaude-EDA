@@ -109,11 +109,11 @@ if uplouded_file is not None:
                         
                         #Visualize wordcloud if there's enough text input
                         if nrows > 20:
+                            fig,ax = plt.subplots(figsize = (17,7))
                             word_cloud = WordCloud().generate(' '.join(time_analysis_output))
-                            plt.figure()
-                            plt.imshow(word_cloud, interpolation = 'bilinear')
+                            ax.imshow(word_cloud, interpolation = 'bilinear')
                             plt.axis('off')
-                            st.pyplot(plt.show())
+                            st.pyplot(fig)
 
 
 
