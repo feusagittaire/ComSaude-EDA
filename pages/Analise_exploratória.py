@@ -176,14 +176,14 @@ if uplouded_file is not None:
             st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
             st.header('**Dataframe filtrado por usuário(a)/menção/hashtags/links**')
 
-            if textchoosen and author_column_name:
+            if submitted:
 
                 st.subheader('***Usuário(a)***')
 
                 authoroptions = st.selectbox('Qual deseja selecionar?', authorsname)
                 df_author = df[df[author_column_name].str.contains(authoroptions)]
                 numberrows_user = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df_author)+1)
-                df_author = df[df[author_column_name].str.contains(authoroptions)].head(numberrows)
+                df_author = df[df[author_column_name].str.contains(authoroptions)].head(numberrows_user)
                 st.write(df_author)
                 st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
 
@@ -219,12 +219,12 @@ if uplouded_file is not None:
                                 st.text('Esperando você escrever o nome da coluna de texto!')
                             else: 
                                 st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                                tweet = df_author[textchoosen].head(numberrows).tolist()
+                                tweet = df_author[textchoosen].head(numberrows_user).tolist()
                                 st.write(tweet)
 
                         else:
                             columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse:')
-                            numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df[df[columnchoosen].str.contains(columnvalue)])+1)
+                            numberrows_class = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df[df[columnchoosen].str.contains(columnvalue)])+1)
 
                             if textchoosen == '':
                                 st.text('Esperando você escrever o nome da coluna de texto!')
@@ -233,7 +233,7 @@ if uplouded_file is not None:
                                 tweet = df_author[textchoosen].head(numberrows).tolist()
                                 st.write(tweet)
                                 st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
-                                tweet = df[df[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows).tolist()
+                                tweet = df[df[columnchoosen].str.contains(columnvalue)][textchoosen].head(numberrows_class).tolist()
                                 st.write(tweet)
 
                     else:
