@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 import re
 from wordcloud import WordCloud
-
+from matplotlib import pyplot as plt
 
 st.markdown('''
 # **Vamos dar uma olhada mais aprofundada nos dados?**
@@ -106,7 +106,10 @@ if uplouded_file is not None:
                         
                         word_cloud = WordCloud().generate(' '.join(time_analysis_output))
                         st.write(time_analysis_output)
-                        st.write(word_cloud)
+                        plt.figure()
+                        plt.imshow(word_cloud, interpolation = 'bilinear')
+                        plt.axis('off')
+                        st.write(plt.show())
 
 
 
