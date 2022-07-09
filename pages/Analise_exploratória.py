@@ -68,7 +68,7 @@ if uplouded_file is not None:
         st.write(df.head(1))
         
         with st.form(key = 'columns_in_form'):
-            cols = st.beta_columns(2)
+            cols = st.columns(2)
             for i,col in enumerate(cols):
                 textchoosen = st.text_input('Qual coluna de texto deseja analisar?')
                 author_column_name = st.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários')
