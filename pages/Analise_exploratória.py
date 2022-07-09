@@ -73,11 +73,11 @@ if uplouded_file is not None:
         
         with col1:
             with st.form('Text'):
-                textchoosen = col.text_input('Qual coluna de texto deseja analisar?', key = i)
+                textchoosen = col.text_input('Qual coluna de texto deseja analisar?')
                 submitted_text = st.form_submit_button(label = 'Enviar')
         with col2:
             with st.form('Author'):
-                author_column_name = col.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários', key = i)
+                author_column_name = col.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários')
                 submitted_author = st.form_submit_button(label = 'Enviar')
         
         if submitted_text and submitted_author:
