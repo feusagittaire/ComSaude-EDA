@@ -75,9 +75,9 @@ if uplouded_file is not None:
             for col in cols:
                 textchoosen = col.text_input('Qual coluna de texto deseja analisar?', key = 0)
                 author_column_name = col.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários', key=1)
-                submitted_author = st.form_submit_button(label = 'Enviar')
+                submitted = st.form_submit_button(label = 'Enviar')
         
-        if submitted_text:
+        if submitted:
             if author_column_name:
                 authorsname = df[author_column_name].tolist()
                 st.subheader('**Usuários que mais publicaram**')
