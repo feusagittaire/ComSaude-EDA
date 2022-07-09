@@ -104,7 +104,7 @@ if uplouded_file is not None:
                         time_analysis_output = df.query(f"year == {timeyear}").query(f"month == {timemonth}")\
                             .query(f"day == {timeday}")[textimecolumn].drop_duplicates().dropna().head(nrows).tolist()
                         
-                        word_cloud = WordCloud().generate(time_analysis_output)
+                        word_cloud = WordCloud().generate(' '.join(time_analysis_output))
                         st.write(time_analysis_output)
                         plt.figure()
                         plt.imshow(word_cloud, interpolation="bilinear")
