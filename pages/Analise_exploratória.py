@@ -69,14 +69,18 @@ if uplouded_file is not None:
         
         #Assigning text column name and author column name variables
         #Streamlit forms
-        with st.form(key = 'columns_in_form'):
-            cols = st.columns(2)
-            for i,col in enumerate(cols):
-                textchoosen = col.text_input('Qual coluna de texto deseja analisar?', key = i)
-                author_column_name = col.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários', key = i)
-                submit = st.form_submit_button(label = 'Enviar')
+        col1,col2 = st.columns(2)
         
-        if submit:
+        with col1:
+            with st.form('Text'):
+                textchoosen = col.text_input('Qual coluna de texto deseja analisar?', key = i)
+                submitted_text = st.form_submit_button(label = 'Enviar')
+        with col2:
+            with st.form('Author'):
+                author_column_name = col.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários', key = i)
+                submitted_author = st.form_submit_button(label = 'Enviar')
+        
+        if submitted_text and submitted_author:
             if author_column_name:
                 authorsname = df[author_column_name].tolist()
                 st.subheader('**Usuários que mais publicaram**')
