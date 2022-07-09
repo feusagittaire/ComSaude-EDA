@@ -200,10 +200,10 @@ if uplouded_file is not None:
 
         
 
-            columns = df_author.columns
-            columnpreference = st.checkbox('Seus dados estão classificados?')
+        columns = df_author.columns
+        columnpreference = st.checkbox('Seus dados estão classificados?')
 
-            if columnpreference:
+        if columnpreference:
                 columnchoosen = st.selectbox('Com base em que coluna você deseja que os textos sejam filtrados?', columns)
                 textcontent = st.selectbox('Você tem interesse em ver os tweets do(a) usuário(a) selecionado(a) ou os tweets de todos(as) aqueles(as) que se enquadram na categoria/classe escolhida?', ['usuário','categoria'])
 
