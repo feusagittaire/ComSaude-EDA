@@ -62,15 +62,16 @@ if uplouded_file is not None:
         st.write(df.corr().round(1))
         st.write(df.corr().style.background_gradient(cmap='coolwarm'))
        
-        
-
-
-
+    #QUALITATIVE ANALYSIS   
     
     if taskchoice == 'qualitativa':
         st.write(df.head(1))
-        textchoosen = st.text_input('Qual coluna de texto deseja analisar?')
-        author_column_name = st.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários')
+        with st.form(key = 'columns_in_form'):
+            cols = st.beta_columns(2)
+            for i,col in enumerate(cols):
+                textchoosen = st.text_input('Qual coluna de texto deseja analisar?')
+                author_column_name = st.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários')
+            submitted = st.form_submit_buttom('Enviar')
         
         
         if author_column_name:
