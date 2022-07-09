@@ -176,7 +176,7 @@ if uplouded_file is not None:
             st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
             st.header('**Dataframe filtrado por usuário(a)/menção/hashtags/links**')
 
-        if textchoosen and author_column_name:
+            if textchoosen and author_column_name:
 
                 st.subheader('***Usuário(a)***')
 
@@ -252,8 +252,8 @@ if uplouded_file is not None:
 
 
 
-        else: 
-            st.warning('Copie e cole o nome da coluna que contém os tweets e aquela onde se localizam os nomes dos usuários')
+            else: 
+                st.warning('Copie e cole o nome da coluna que contém os tweets e aquela onde se localizam os nomes dos usuários')
 
 
 #EXEMPLE WHEN NO FILE IS UPLOADED
