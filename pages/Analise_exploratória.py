@@ -113,7 +113,7 @@ if uplouded_file is not None:
                             plt.figure()
                             plt.imshow(word_cloud, interpolation = 'bilinear')
                             plt.axis('off')
-                            st.write(plt.show())
+                            st.pyplot(plt.show())
 
 
 
