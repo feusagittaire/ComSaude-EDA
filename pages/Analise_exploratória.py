@@ -106,11 +106,7 @@ if uplouded_file is not None:
                         
                         word_cloud = WordCloud().generate(' '.join(time_analysis_output))
                         st.write(time_analysis_output)
-                        plt.figure()
-                        plt.imshow(word_cloud, interpolation="bilinear")
-                        plt.axis("off")
-                        
-                        st.write(plt.show())
+                        st.write(word_cloud)
 
 
 
