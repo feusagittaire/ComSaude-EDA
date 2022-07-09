@@ -214,9 +214,9 @@ if uplouded_file is not None:
                             Tudo bem, você deseja entender qual a relação dos outros dados analíticos à sua disposição com os tweets que o(a) usuário(a) em questão publicou/compartilhou''')
                 columnvalue = st.text_input('Escreva qual o nome da classe/categoria de interesse')
 
-                 if textchoosen == '':
+                if textchoosen == '':
                     st.text('Esperando você escrever o nome da coluna de texto!')
-                 else: 
+                else: 
                     st.markdown('**INFO** Os tweets serão apresentados em formato de lista, de texto corrido, cada linha respresentará o tweet diferente!')
                     tweet = df_author[textchoosen].head(numberrows_user).tolist()
                     st.write(tweet)
