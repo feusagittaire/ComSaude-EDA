@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import re
+import wordcloud
 
 
 st.markdown('''
@@ -25,21 +26,21 @@ if uplouded_file is not None:
     
     if option == 'excel':
 
-        @st.cache
+        @st.cache(suppress_st_warning=True)
         def load_data(uplouded_file):
             data = pd.read_excel(uplouded_file, engine = 'openpyxl')
             return data
         
     
     else:
-        @st.cache
+        @st.cache(suppress_st_warning=True)
         def load_data(uplouded_file):
             data = pd.read_csv(uplouded_file)
             return data
 
     data_load_state = st.text('Carregando arquivo...')
     df = load_data(uplouded_file)
-    data_load_state = st.text('Eitchan, carregamento conluido! (using st.cache)')
+    data_load_state = st.text('Eitchan, carregamento conluido!')
 
     #select the author to see their tweets
     taskchoice = st.selectbox('O que você quer fazer, analisar um relatório com os principais dados contidos no arquivo ou uma análise mais qualitativa?', ['relatório', 'qualitativa'])
@@ -87,20 +88,23 @@ if uplouded_file is not None:
                 timeanalysischeck = st.checkbox('Quero analisar os tweets com base na data de publicação para melhor entender o gráfico')
                 if timeanalysischeck:
 
-                    timeday = st.text_input('Digite um dia')
-                    timemonth = st.text_input('Agora o mês (número. Ex: 1,2,3,4,...,12')
+                    timeday = st.text_input('Digite um dia (número sem zero. Ex: 1,2,3,4,...,12)')
+                    timemonth = st.text_input('Agora o mês (número. Ex: 1,2,3,4,...,12)')
                     timeyear = st.text_input('Qual ano?')
                     textimecolumn = st.text_input('Que coluna deseja analisar?')
 
                     df['year'] = df[timecolumn].dt.year
                     df['month'] = df[timecolumn].dt.month
                     df['day'] = df[timecolumn].dt.day
+                    word_cloud = wordcloud.WordCloud()
                     if timeday == '':
                         st.text('Esperando você preencher os dados')
                     else:
                         nrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df)+1)
+                        time_analysis_output = df.query(f"year == {timeyear}").query(f"month == {timemonth}").query(f"day == {timeday}")[textimecolumn].drop_duplicates().dropna().head(nrows).tolist()
 
-                        st.write(df.query(f"year == {timeyear}").query(f"month == {timemonth}").query(f"day == {timeday}")[textimecolumn].drop_duplicates().dropna().head(nrows).tolist())  
+                        st.write(time_analysis_output) 
+                        st.write(word_cloud.generate(time_analysis_output))
 
 
 
@@ -159,7 +163,7 @@ if uplouded_file is not None:
 
             authoroptions = st.selectbox('Qual deseja selecionar?', authorsname)
             df_author = df[df[author_column_name].str.contains(authoroptions)]
-            numberrows = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df_author)+1)
+            numberrows_user = st.slider('Selecione a quantidade de dados que deseja ver:', min_value = 1, max_value=len(df_author)+1)
             df_author = df[df[author_column_name].str.contains(authoroptions)].head(numberrows)
             st.write(df_author)
             st.text('━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━━◦○◦━◦○◦━')
