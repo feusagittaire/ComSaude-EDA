@@ -72,7 +72,7 @@ if uplouded_file is not None:
         
         with st.form('text and autor'):
             col1,col2 =  st.columns(2)
-            extchoosen = col1.text_input('Qual coluna de texto deseja analisar?')
+            textchoosen = col1.text_input('Qual coluna de texto deseja analisar?')
             author_column_name = col2.text_input('Copie e cole o nome da coluna que contém os nomes dos usuários')
             submitted = st.form_submit_button(label = 'Enviar')
         
