@@ -104,12 +104,16 @@ if uplouded_file is not None:
                         time_analysis_output = df.query(f"year == {timeyear}").query(f"month == {timemonth}")\
                             .query(f"day == {timeday}")[textimecolumn].drop_duplicates().dropna().head(nrows).tolist()
                         
-                        word_cloud = WordCloud().generate(' '.join(time_analysis_output))
+                        
                         st.write(time_analysis_output)
-                        plt.figure()
-                        plt.imshow(word_cloud, interpolation = 'bilinear')
-                        plt.axis('off')
-                        st.write(plt.show())
+                        
+                        #Visualize wordcloud if there's enough text input
+                        if nrows > 20:
+                            word_cloud = WordCloud().generate(' '.join(time_analysis_output))
+                            plt.figure()
+                            plt.imshow(word_cloud, interpolation = 'bilinear')
+                            plt.axis('off')
+                            st.write(plt.show())
 
 
 
