@@ -5,23 +5,17 @@ from pandas_profiling import ProfileReport
 from streamlit_pandas_profiling import st_profile_report
 
 
-#Putting an image to make the web app more appealing
-st.image('https://www.cei.int/sites/default/files/2020-11/TOL%20Education.PNG')
-#Presentation
+col1, col2, col3= st.columns([1,4,1])
+with col2:
+    st.image('https://api.observatorio.analisepoliticaemsaude.org/media/thematic_axes/bbbee2c4f109e102018d901cead397f2/imgs/bbbee2c4f109e102018d901cead397f2.png')
 st.markdown('''
-# **Análise exploratória de dados para pesquisas na área da comunicação em saúde**
+# **Observatório de Análise Política de Saúde - eixo Mídia e Saúde**
 
-Essa é uma aplicação web criada através da biblioteca Streamlit (https://docs.streamlit.io/l), em linguagem Python, por Arthur Lopes (UFBA); durante vigência da bolsa FAPESB/Fiocruz.
-O intuito da aplicação é tornar mais fácil e acessível a análise exploratória de dados para pesquisadores(as) leigas em programação.
+Essa é uma aplicação web criada através da biblioteca Streamlit (https://docs.streamlit.io/l), em linguagem Python, por Arthur Lopes (UFBA).
+O intuito da aplicação é ser uma ferramenta de Infovigilância para pesquisadoras(es) do grupo de pesquisa a fim de viabilizar a criação de relatórios através de dados de conversações públicas e cobertura jornalistica sobre temas de interesse da saúde pública.
 
 Boa pesquisa!
 ''')
-#Image reference
-st.caption('Image source: Central European Initiative (CEI). Url: <https://www.cei.int/events/countering-the-infodemic-best-practices-in-debunking-disinformation>')
-
-
-st.sidebar.image("http://www.fapesb.ba.gov.br/wp-content/uploads/2019/08/FAPESB-SITE-01-300x99.png")
-st.sidebar.image("https://i.ibb.co/Y2f21V2/python-logo-1.png")
 
 
 
