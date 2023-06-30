@@ -14,7 +14,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 from profileclassifier import nlpclassifier_profilener
 import io
 import networkx as nx
-from pyvis import network as net
 from IPython.core.display import display, HTML
 import streamlit.components.v1 as components
 from sklearn.feature_extraction.text import TfidfVectorizer
