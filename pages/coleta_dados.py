@@ -141,19 +141,19 @@ if dataset == 'sim':
                 data = pd.read_csv(uplouded_file)
                 return data
 
-        data_load_state = st.text('Carregando arquivo...')
-        df = load_data(uplouded_file)
-        data_load_state = st.text('Carregamento conluido! (using st.cache)')
+data_load_state = st.text('Carregando arquivo...')
+df = load_data(uplouded_file)
+data_load_state = st.text('Carregamento conluido! (using st.cache)')
 
     
 
       
-    st.title('Resultados')
-    st.markdown(f"**:red[\nTweet mais retuitado:]** {df.sort_values('retweetCount', ascending = False).head(1)['rawContent'].tolist()}")
-    st.markdown(f"**:red[\nTweet mais visto:]** {df.sort_values('viewCount', ascending = False).head(1)['rawContent'].tolist()}")
-    st.dataframe(df)
+st.title('Resultados')
+st.markdown(f"**:red[\nTweet mais retuitado:]** {df.sort_values('retweetCount', ascending = False).head(1)['rawContent'].tolist()}")
+st.markdown(f"**:red[\nTweet mais visto:]** {df.sort_values('viewCount', ascending = False).head(1)['rawContent'].tolist()}")
+st.dataframe(df)
 
-else:
+if dataset == 'não':
 
     st.sidebar.title('Vamos começar!')
     scraping = st.sidebar.selectbox('De qual mídia deseja extrair dados?',['Twitter (snscrape)','Midia jornalística'])
@@ -193,22 +193,22 @@ else:
             pass
 
         
-        st.title('Resultados')
-        st.markdown(f"**:red[\nTweet mais retuitado:]** {df.sort_values('retweetCount', ascending = False).head(1)['rawContent'].tolist()}")
-        st.markdown(f"**:red[\nTweet mais visto:]** {df.sort_values('viewCount', ascending = False).head(1)['rawContent'].tolist()}")
-        st.dataframe(df)
+st.title('Resultados')
+st.markdown(f"**:red[\nTweet mais retuitado:]** {df.sort_values('retweetCount', ascending = False).head(1)['rawContent'].tolist()}")
+st.markdown(f"**:red[\nTweet mais visto:]** {df.sort_values('viewCount', ascending = False).head(1)['rawContent'].tolist()}")
+st.dataframe(df)
 
-        download = st.selectbox('Deseja baixar o dataframe em formato excel?', ['Escolha', 'Sim','Não'])
-        if download == 'Sim':
-            df['date'] = pd.to_datetime(df['date'])
-            df['date'] = df['date'].dt.date
-            buffer = io.BytesIO()
-            with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-                df.to_excel(writer, sheet_name='Sheet1', index=False)
+download = st.selectbox('Deseja baixar o dataframe em formato excel?', ['Escolha', 'Sim','Não'])
+if download == 'Sim':
+         df['date'] = pd.to_datetime(df['date'])
+         df['date'] = df['date'].dt.date
+         buffer = io.BytesIO()
+         with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+         df.to_excel(writer, sheet_name='Sheet1', index=False)
                 # Close the Pandas Excel writer and output the Excel file to the buffer
-                writer.save()
+         writer.save()
 
-                download2 = st.download_button(
+         download2 = st.download_button(
                                         label="Download dados como Excel",
                                         data=buffer,
                                         file_name='resultados oaps.xlsx',
