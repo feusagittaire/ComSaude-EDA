@@ -105,7 +105,7 @@ def describe_topics(lda, feature_names, top_n_words=5, show_weight=False):
 
 
 
-@st.cache_data          
+@st.cache          
 def scraper(n:int=80000):
    df = pd.DataFrame(itertools.islice(sntwitter.TwitterSearchScraper(
         query).get_items(),n))
