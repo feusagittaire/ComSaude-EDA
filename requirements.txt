@@ -8,9 +8,9 @@ openpyxl==3.0.10
 wordcloud==1.8.2.2
 matplotlib==3.5.2
 nltk==3.7
-@ git+https://github.com/JustAnotherArchivist/snscrape
+snscrape @ git+https://github.com/JustAnotherArchivist/snscrape
 scikit-learn==1.3.0
-@ git+https://github.com/feusagittaire/ProfileNER-classifier
+profileclassifier @ git+https://github.com/feusagittaire/ProfileNER-classifier
 pyLDAvis==3.4.1
 
 
