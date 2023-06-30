@@ -11,10 +11,6 @@ import nltk
 nltk.download("stopwords")
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import CountVectorizer
-from matplotlib import pyplot as plt
-import seaborn as sns
-from wordcloud import WordCloud
-from matplotlib import cm
 from profileclassifier import nlpclassifier_profilener
 import io
 import networkx as nx
