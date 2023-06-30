@@ -147,7 +147,7 @@ data_load_state = st.text('Carregamento conluido! (using st.cache)')
 
     
 
-if dataset == 'não':
+elif dataset == 'não':
 
     st.sidebar.title('Vamos começar!')
     scraping = st.sidebar.selectbox('De qual mídia deseja extrair dados?',['Twitter (snscrape)','Midia jornalística'])
