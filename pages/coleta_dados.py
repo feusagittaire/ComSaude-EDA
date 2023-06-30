@@ -18,8 +18,7 @@ import streamlit.components.v1 as components
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from sklearn.decomposition import LatentDirichletAllocation
-import pyLDAvis
-import pyLDAvis.sklearn
+
 
 stop = stopwords.words('portuguese')
 novos = ['vc','pra','vai','usa','faz','pq','ainda','sobre','ta','porque','assim',
