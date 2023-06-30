@@ -103,7 +103,7 @@ def describe_topics(lda, feature_names, top_n_words=5, show_weight=False):
           top_words = [feature_names[i] for i in weights.argsort()[:-top_n_words-1:-1]]
           st.write(top_words, '\n')
 
-
+start = 0
 
 @st.cache          
 def scraper(n:int=80000):
@@ -144,6 +144,7 @@ if dataset == 'sim':
         data_load_state = st.text('Carregando arquivo...')
         df = load_data(uplouded_file)
         data_load_state = st.text('Carregamento conluido! (using st.cache)')
+        start += 1
 
     
 
@@ -181,12 +182,13 @@ else:
                 except:
                     time.sleep(0.5)
                     df = scraper()
+                    start += 1
                         #df = df[df['content'].str.contains(f'{term}')]
                         #st.dataframe(df)
         else:
             pass
 
-if df:    
+if start != 0:    
          st.title('Resultados')
          st.markdown(f"**:red[\nTweet mais retuitado:]** {df.sort_values('retweetCount', ascending = False).head(1)['rawContent'].tolist()}")
          st.markdown(f"**:red[\nTweet mais visto:]** {df.sort_values('viewCount', ascending = False).head(1)['rawContent'].tolist()}")
