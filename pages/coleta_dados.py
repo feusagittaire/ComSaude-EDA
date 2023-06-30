@@ -204,15 +204,15 @@ if download == 'Sim':
          df['date'] = df['date'].dt.date
          buffer = io.BytesIO()
          with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-         df.to_excel(writer, sheet_name='Sheet1', index=False)
-                # Close the Pandas Excel writer and output the Excel file to the buffer
-         writer.save()
-
-         download2 = st.download_button(
-                                        label="Download dados como Excel",
-                                        data=buffer,
-                                        file_name='resultados oaps.xlsx',
-                                        mime='application/vnd.ms-excel'
+                  df.to_excel(writer, sheet_name='Sheet1', index=False)
+                         # Close the Pandas Excel writer and output the Excel file to the buffer
+                  writer.save()
+         
+                  download2 = st.download_button(
+                                                 label="Download dados como Excel",
+                                                 data=buffer,
+                                                 file_name='resultados oaps.xlsx',
+                                                 mime='application/vnd.ms-excel'
                 )
         
 st.subheader('Análise temporal')
