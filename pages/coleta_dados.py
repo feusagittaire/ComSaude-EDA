@@ -112,48 +112,8 @@ def scraper(n:int=80000):
    return df
 ###################################################################################3
 
-dataset = st.selectbox('Você já tem um dataset?', ('Escolha','sim','não'))
-if dataset == 'sim':
-#uploud data
-    option = st.sidebar.selectbox('Selecione um formato', ('Escolha','csv','excel'))
-    st.sidebar.write('Você selecionou:', option)
-    #pandas profiling report
+dataset = st.selectbox('Você já tem um dataset?', ('não'))
 
-    with st.sidebar.header('Suba o arquivo'):
-        uplouded_file = st.sidebar.file_uploader("Escolha o arquivo")
-        
-
-
-    if uplouded_file is not None:
-        
-        
-        if option == 'excel':
-
-            @st.cache
-            def load_data(uplouded_file):
-                data = pd.read_excel(uplouded_file, engine = 'openpyxl')
-                return data
-            
-        
-        else:
-            @st.cache
-            def load_data(uplouded_file):
-                data = pd.read_csv(uplouded_file)
-                return data
-
-        data_load_state = st.text('Carregando arquivo...')
-        df = load_data(uplouded_file)
-        data_load_state = st.text('Carregamento conluido! (using st.cache)')
-
-    
-
-      
-    st.title('Resultados')
-    st.markdown(f"**:red[\nTweet mais retuitado:]** {df.sort_values('retweetCount', ascending = False).head(1)['rawContent'].tolist()}")
-    st.markdown(f"**:red[\nTweet mais visto:]** {df.sort_values('viewCount', ascending = False).head(1)['rawContent'].tolist()}")
-    st.dataframe(df)
-
-else:
 
     st.sidebar.title('Vamos começar!')
     scraping = st.sidebar.selectbox('De qual mídia deseja extrair dados?',['Twitter','Twitter (snscrape)','Midia jornalística'])
