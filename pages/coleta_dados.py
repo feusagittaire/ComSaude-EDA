@@ -147,12 +147,6 @@ data_load_state = st.text('Carregamento conluido! (using st.cache)')
 
     
 
-      
-st.title('Resultados')
-st.markdown(f"**:red[\nTweet mais retuitado:]** {df.sort_values('retweetCount', ascending = False).head(1)['rawContent'].tolist()}")
-st.markdown(f"**:red[\nTweet mais visto:]** {df.sort_values('viewCount', ascending = False).head(1)['rawContent'].tolist()}")
-st.dataframe(df)
-
 if dataset == 'não':
 
     st.sidebar.title('Vamos começar!')
