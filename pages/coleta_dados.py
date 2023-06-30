@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
-import tweepy
 import time
 import snscrape.modules.twitter as sntwitter
 import itertools
