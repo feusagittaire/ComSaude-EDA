@@ -408,10 +408,10 @@ if choice == 'Sim':
 
     labels_ = {}
     for node in g.nodes():
-    if node in labels:
-    #set the node name as the key and the label as its value 
-    labels_[node.replace('"','')] = node
-    labels_
+             if node in labels:
+                      #set the node name as the key and the label as its value 
+                      labels_[node.replace('"','')] = node
+                      labels_
 
     d = nx.degree(g)
     val = [val for (node, val) in g.degree()]
