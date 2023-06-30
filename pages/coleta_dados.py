@@ -394,7 +394,7 @@ if choice == 'Sim':
     target = df['target'].apply(lambda x: re.sub("\'",'',str(x))).tolist()
     df = df.dropna(subset = ['author'])
     for i in range(len(df)):
-    edgeslist.append((source[i], target[i]))
+        edgeslist.append((source[i], target[i]))
 
     edgeslist_df = pd.DataFrame(edgeslist, columns = ['Source','Target'])
     labels = edgeslist_df['Target'].value_counts().head(10).to_frame('total').reset_index()
