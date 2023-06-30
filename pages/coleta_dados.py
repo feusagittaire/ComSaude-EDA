@@ -141,9 +141,9 @@ if dataset == 'sim':
                 data = pd.read_csv(uplouded_file)
                 return data
 
-         data_load_state = st.text('Carregando arquivo...')
-         df = load_data(uplouded_file)
-         data_load_state = st.text('Carregamento conluido! (using st.cache)')
+        data_load_state = st.text('Carregando arquivo...')
+        df = load_data(uplouded_file)
+        data_load_state = st.text('Carregamento conluido! (using st.cache)')
 
     
 
