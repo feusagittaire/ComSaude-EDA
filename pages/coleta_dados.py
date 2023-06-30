@@ -156,7 +156,7 @@ if dataset == 'sim':
 else:
 
     st.sidebar.title('Vamos começar!')
-    scraping = st.sidebar.selectbox('De qual mídia deseja extrair dados?',['Twitter','Twitter (snscrape)','Midia jornalística'])
+    scraping = st.sidebar.selectbox('De qual mídia deseja extrair dados?',['Twitter (snscrape)','Midia jornalística'])
 
 
     if scraping == 'Twitter (snscrape)':
